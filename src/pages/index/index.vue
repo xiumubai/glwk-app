@@ -2,14 +2,15 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-19 17:40:21
+ * @LastEditTime: 2022-08-19 18:35:28
  * @Description: 
 -->
 <template>
-  <view class="">
+  <view class="container">
     <uni-search-bar
       radius="20"
       bgColor="#000"
+      placeholder="找知识、找培训、找老师"
       v-model="searchValue"
       clearButton="auto"
       cancelButton="none"
@@ -37,6 +38,8 @@
         </swiper-item>
       </swiper>
     </view>
+
+    <view class="text">123</view>
   </view>
 </template>
 
@@ -60,4 +63,6 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style scoped lang="scss">
+@import url('@/static/styles/global.scss');
+</style>
