@@ -1,9 +1,18 @@
+<!--
+ * @Author: 朽木白
+ * @Date: 2022-08-19 10:33:44
+ * @LastEditors: 1547702880@qq.com
+ * @LastEditTime: 2022-08-19 17:40:21
+ * @Description: 
+-->
 <template>
-  <view class="content">
+  <view class="">
     <uni-search-bar
-      :focus="true"
+      radius="20"
+      bgColor="#000"
       v-model="searchValue"
-      @input="input"
+      clearButton="auto"
+      cancelButton="none"
       @confirm="search"
     >
     </uni-search-bar>
@@ -36,7 +45,7 @@ export default {
   data() {
     return {
       title: 'Hello',
-      searchValue: '123123',
+      searchValue: '',
     };
   },
   onLoad() {},
@@ -47,85 +56,8 @@ export default {
         icon: 'none',
       });
     },
-    input(res) {
-      console.log('----input:', res);
-    },
   },
 };
 </script>
 
-<style lang="scss">
-.search-result {
-  padding-top: 10px;
-  padding-bottom: 20px;
-  text-align: center;
-}
-
-.search-result-text {
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-}
-
-.example-body {
-  /* #ifndef APP-NVUE */
-  display: block;
-  /* #endif */
-  padding: 0px;
-}
-
-.uni-mt-10 {
-  margin-top: 10px;
-}
-.uni-margin-wrap {
-  width: 690rpx;
-  width: 100%;
-}
-.swiper {
-  height: 300rpx;
-}
-.swiper-item {
-  display: block;
-  height: 300rpx;
-  line-height: 300rpx;
-  text-align: center;
-}
-.swiper-list {
-  margin-top: 40rpx;
-  margin-bottom: 0;
-}
-.uni-common-mt {
-  margin-top: 60rpx;
-  position: relative;
-}
-.info {
-  position: absolute;
-  right: 20rpx;
-}
-.uni-padding-wrap {
-  width: 550rpx;
-  padding: 0 100rpx;
-}
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin: 200rpx auto 50rpx auto;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
-}
-</style>
+<style lang="scss"></style>
