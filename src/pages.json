@@ -20,22 +20,20 @@
     }
   ],
   "tabBar": {
-    "color": "#909399",
-    "selectedColor": "#303133",
-    "backgroundColor": "#FFFFFF",
-    "borderStyle": "black",
+    "backgroundColor": "#17181a",
+    "selectedColor": "#409EFF",
+    "color": "#a1a7b2",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
         "iconPath": "static/images/nav/home-off.png",
-        "selectedIconPath": "static/images/nav/home-on.png"
+        "selectedIconPath": "static/images/nav/home-on.png",
+        "text": "首页"
       },
-
       {
         "pagePath": "pages/outline/index",
-        "iconPath": "static/images/nav/fl-off.png",
-        "selectedIconPath": "static/images/nav/fl-on.png",
+        "iconPath": "static/images/nav/list-off.png",
+        "selectedIconPath": "static/images/nav/list-on.png",
         "text": "分类"
       },
       {
@@ -53,9 +51,9 @@
     }
   },
   "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "谷粒微课",
+    "navigationBarBackgroundColor": "#17181a",
+    "backgroundColor": "#000"
   }
 }
