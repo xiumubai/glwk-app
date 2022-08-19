@@ -67,10 +67,13 @@
     "@dcloudio/uni-quickapp-webview": "^2.0.1-35320220729002",
     "@dcloudio/uni-stacktracey": "^2.0.1-35320220729002",
     "@dcloudio/uni-stat": "^2.0.1-35320220729002",
+    "@dcloudio/uni-ui": "^1.4.20",
     "@vue/shared": "^3.0.0",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
     "regenerator-runtime": "^0.12.1",
+    "sass": "^1.54.4",
+    "sass-loader": "^13.0.2",
     "vue": "^2.6.11",
     "vuex": "^3.2.0"
   },
@@ -97,6 +100,7 @@
     "postcss-comment": "^2.0.0",
     "vue-template-compiler": "^2.6.11"
   },
+  "license": "MIT",
   "browserslist": [
     "Android >= 4.4",
     "ios >= 9"

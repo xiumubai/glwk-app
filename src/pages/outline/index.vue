@@ -1,23 +1,24 @@
+<!--
+ * @Author: 朽木白
+ * @Date: 2022-08-19 11:10:52
+ * @LastEditors: 1547702880@qq.com
+ * @LastEditTime: 2022-08-19 11:12:33
+ * @Description: 
+-->
 <template>
   <view class="content">
     <image class="logo" src="/static/logo.png" />
     <view>
       <text class="title">{{ title }} </text>
     </view>
-    <uni-badge size="small" :text="100" absolute="rightBottom" type="primary">
-      <button type="default">右下</button>
-    </uni-badge>
   </view>
 </template>
 
 <script>
-import { uniBadge } from '@dcloudio/uni-ui';
-
 export default {
-  components: { uniBadge },
   data() {
     return {
-      title: 'Hello',
+      title: 'Hello2',
     };
   },
   onLoad() {},
