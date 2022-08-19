@@ -20,19 +20,29 @@
     }
   ],
   "tabBar": {
+    "color": "#909399",
+    "selectedColor": "#303133",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "index"
+        "text": "首页",
+        "iconPath": "static/images/nav/home-off.png",
+        "selectedIconPath": "static/images/nav/home-on.png"
       },
 
       {
         "pagePath": "pages/outline/index",
-        "text": "outline"
+        "iconPath": "static/images/nav/fl-off.png",
+        "selectedIconPath": "static/images/nav/fl-on.png",
+        "text": "分类"
       },
       {
         "pagePath": "pages/user/index",
-        "text": "user"
+        "iconPath": "static/images/nav/my-off.png",
+        "selectedIconPath": "static/images/nav/my-on.png",
+        "text": "我的"
       }
     ]
   },

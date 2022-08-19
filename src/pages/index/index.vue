@@ -1,31 +1,111 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view>
-      <text class="title">{{ title }} </text>
+    <uni-search-bar
+      :focus="true"
+      v-model="searchValue"
+      @input="input"
+      @confirm="search"
+    >
+    </uni-search-bar>
+
+    <view class="uni-margin-wrap">
+      <swiper
+        class="swiper"
+        circular
+        :indicator-dots="indicatorDots"
+        :autoplay="autoplay"
+        :interval="interval"
+        :duration="duration"
+      >
+        <swiper-item>
+          <view class="swiper-item uni-bg-red">A</view>
+        </swiper-item>
+        <swiper-item>
+          <view class="swiper-item uni-bg-green">B</view>
+        </swiper-item>
+        <swiper-item>
+          <view class="swiper-item uni-bg-blue">C</view>
+        </swiper-item>
+      </swiper>
     </view>
-    <uni-badge size="small" :text="100" absolute="rightBottom" type="primary">
-      <button type="default">右下</button>
-    </uni-badge>
   </view>
 </template>
 
 <script>
-import { uniBadge } from '@dcloudio/uni-ui';
-
 export default {
-  components: { uniBadge },
   data() {
     return {
       title: 'Hello',
+      searchValue: '123123',
     };
   },
   onLoad() {},
-  methods: {},
+  methods: {
+    search(res) {
+      uni.showToast({
+        title: '搜索：' + res.value,
+        icon: 'none',
+      });
+    },
+    input(res) {
+      console.log('----input:', res);
+    },
+  },
 };
 </script>
 
-<style>
+<style lang="scss">
+.search-result {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.search-result-text {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.example-body {
+  /* #ifndef APP-NVUE */
+  display: block;
+  /* #endif */
+  padding: 0px;
+}
+
+.uni-mt-10 {
+  margin-top: 10px;
+}
+.uni-margin-wrap {
+  width: 690rpx;
+  width: 100%;
+}
+.swiper {
+  height: 300rpx;
+}
+.swiper-item {
+  display: block;
+  height: 300rpx;
+  line-height: 300rpx;
+  text-align: center;
+}
+.swiper-list {
+  margin-top: 40rpx;
+  margin-bottom: 0;
+}
+.uni-common-mt {
+  margin-top: 60rpx;
+  position: relative;
+}
+.info {
+  position: absolute;
+  right: 20rpx;
+}
+.uni-padding-wrap {
+  width: 550rpx;
+  padding: 0 100rpx;
+}
 .content {
   display: flex;
   flex-direction: column;
