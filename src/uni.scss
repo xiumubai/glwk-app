@@ -23,39 +23,51 @@ $uni-color-warning: #f0ad4e;
 $uni-color-error: #dd524d;
 
 /* 文字基本颜色 */
-$uni-text-color: #333; //基本色
-$uni-text-color-inverse: #fff; //反色
+$uni-text-color-name: #a1a7b2;
+$uni-text-color-text: #737780; //基本色
+$uni-text-color-white: #fff; //反色
 $uni-text-color-grey: #999; //辅助灰色，如加载更多的提示信息
 $uni-text-color-placeholder: #808080;
 $uni-text-color-disable: #c0c0c0;
+$price-font-color: #fa3f4e;
 
 /* 背景颜色 */
-$uni-bg-color: #000;
-$uni-bg-color-grey: #f8f8f8;
+$uni-bg-color: #000; // 主背景色
 $uni-bg-color-hover: #f1f1f1; //点击状态颜色
 $uni-bg-color-mask: rgba(0, 0, 0, 0.4); //遮罩颜色
-$uni-bg-container-color: #17181a;
-$uni-gradient-bg-color: linear-gradient(180deg, #17181a, #17181a 60%, #050505);
+$uni-bg-color-white: #fff; // 白色背景色
+$uni-bg-container-color: #17181a; // 最外层container背景色
+$uni-bg-wrapper-color: #1f2228; // wrapper颜色
+$uni-gradient-bg-color: linear-gradient(
+  180deg,
+  #17181a,
+  #17181a 60%,
+  #050505
+); // 渐变背景色
+
 /* 边框颜色 */
 $uni-border-color: #c8c7cc;
 
-/* 尺寸变量 */
-
 /* 文字尺寸 */
-$uni-font-size-sm: 24rpx;
-$uni-font-size-base: 28rpx;
-$uni-font-size-lg: 32rpx;
+$uni-font-size-12: 12px;
+$uni-font-size-14: 14px;
+$uni-font-size-16: 16px;
 
 /* 图片尺寸 */
-$uni-img-size-sm: 40rpx;
-$uni-img-size-base: 52rpx;
-$uni-img-size-lg: 80rpx;
+$uni-img-size-14: 16px;
+$uni-img-size-16: 16px;
+$uni-img-size-20: 20;
+$uni-img-size-24: 24;
+$uni-img-size-36: 36;
 
 /* Border Radius */
-$uni-border-radius-sm: 4rpx;
-$uni-border-radius-base: 6rpx;
-$uni-border-radius-lg: 12rpx;
-$uni-border-radius-circle: 50%;
+$uni-border-radius-4: 4px;
+$uni-border-radius-6: 6px;
+$uni-border-radius-8: 8px;
+$uni-border-radius-10: 10px;
+$uni-border-radius-12: 12px;
+$uni-border-radius-14: 14px;
+$uni-border-radius-16: 16px;
 
 /* 水平间距 */
 $uni-spacing-row-sm: 12px;
@@ -63,9 +75,12 @@ $uni-spacing-row-base: 20rpx;
 $uni-spacing-row-lg: 30rpx;
 
 /* 垂直间距 */
-$uni-spacing-col-sm: 8rpx;
-$uni-spacing-col-base: 16rpx;
-$uni-spacing-col-lg: 24rpx;
+$uni-spacing-4: 4px;
+$uni-spacing-8: 8px;
+$uni-spacing-10: 10px;
+$uni-spacing-12: 12px;
+$uni-spacing-14: 14px;
+$uni-spacing-16: 16px;
 
 /* 透明度 */
 $uni-opacity-disabled: 0.3; // 组件禁用态的透明度

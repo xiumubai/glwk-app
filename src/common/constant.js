@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 14:00:15
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-20 14:00:44
+ * @LastEditTime: 2022-08-20 16:00:30
  * @Description:
  */
 export const hotCateList = [
@@ -37,5 +37,75 @@ export const bannerList = [
   },
   {
     src: 'https://gdhrss-1251316161.file.myqcloud.com/public/35b4100d915aa05fbe7b83e426733296e691ed8d1660562910976/PC%E6%96%B0%E9%A6%96%E9%A1%B5banner.png',
+  },
+];
+
+export const courseList = [
+  {
+    type: 1,
+    name: '精选推荐',
+    list: [
+      {
+        src: 'https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBcfolcaLTibJicFxSibQbpVlUPt1zHkVRjFUas8ia1g01qgu4RZPxQvUN68UWkdTASBhY/356',
+        title: ' C语言/C++ 大神精讲(C++17标准/软件安全/实战分析/商业项目)',
+        studyNum: 20020,
+        price: 0,
+        buyNum: 20000,
+      },
+      {
+        src: 'https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBcfolcaLTibJicFxSibQbpVlUPt1zHkVRjFUas8ia1g01qgu4RZPxQvUN68UWkdTASBhY/356',
+        title: ' C语言/C++ 大神精讲(C++17标准/软件安全/实战分析/商业项目)',
+        studyNum: 20020,
+        price: 2000,
+        buyNum: 20000,
+      },
+      {
+        src: 'https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBcfolcaLTibJicFxSibQbpVlUPt1zHkVRjFUas8ia1g01qgu4RZPxQvUN68UWkdTASBhY/356',
+        title: ' C语言/C++ 大神精讲(C++17标准/软件安全/实战分析/商业项目)',
+        studyNum: 20020,
+        price: 20309,
+        buyNum: 20000,
+      },
+      {
+        src: 'https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBcfolcaLTibJicFxSibQbpVlUPt1zHkVRjFUas8ia1g01qgu4RZPxQvUN68UWkdTASBhY/356',
+        title: ' C语言/C++ 大神精讲(C++17标准/软件安全/实战分析/商业项目)',
+        studyNum: 20020,
+        price: 23933,
+        buyNum: 20000,
+      },
+    ],
+  },
+  {
+    type: 2,
+    name: '销量优先',
+    list: [
+      {
+        src: 'https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBcfolcaLTibJicFxSibQbpVlUPt1zHkVRjFUas8ia1g01qgu4RZPxQvUN68UWkdTASBhY/356',
+        title: ' C语言/C++ 大神精讲(C++17标准/软件安全/实战分析/商业项目)',
+        studyNum: 20020,
+        price: 0,
+        buyNum: 20000,
+      },
+    ],
+  },
+  {
+    type: 3,
+    name: '价格实惠',
+    list: [
+      {
+        src: 'https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBcfolcaLTibJicFxSibQbpVlUPt1zHkVRjFUas8ia1g01qgu4RZPxQvUN68UWkdTASBhY/356',
+        title: ' C语言/C++ 大神精讲(C++17标准/软件安全/实战分析/商业项目)',
+        studyNum: 20020,
+        price: 0,
+        buyNum: 20000,
+      },
+      {
+        src: 'https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBcfolcaLTibJicFxSibQbpVlUPt1zHkVRjFUas8ia1g01qgu4RZPxQvUN68UWkdTASBhY/356',
+        title: ' C语言/C++ 大神精讲(C++17标准/软件安全/实战分析/商业项目)',
+        studyNum: 20020,
+        price: 0,
+        buyNum: 20000,
+      },
+    ],
   },
 ];
