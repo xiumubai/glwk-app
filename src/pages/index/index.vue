@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-20 16:06:35
+ * @LastEditTime: 2022-08-20 16:50:40
  * @Description: 
 -->
 <template>
@@ -65,7 +65,7 @@
           >
             <navigator class="list_item_card">
               <view class="list_item_card_img">
-                <image alt="课程封面" mode="heightFix" :src="course.src" />
+                <image alt="课程封面" mode="widthFix" :src="course.src" />
               </view>
               <view class="list_item_card_content">
                 <h3 class="item_content_name">
@@ -184,22 +184,24 @@ export default {
       .list_item_card {
         display: block;
         width: 100%;
-        border-radius: $uni-border-radius-6;
-        background: $uni-bg-wrapper-color;
         &_img {
           width: 100%;
           height: 95px;
           background-image: url('https://8.idqqimg.com/edu/mobilev2/m-core/3d1dd248376a6da4a15e0000184f44c6.png');
           background-repeat: no-repeat;
           background-size: contain;
+          border-radius: 8px 8px 0 0;
           image {
             height: 100%;
+            width: 100%;
+            border-radius: 8px 8px 0 0;
           }
         }
         &_content {
+          background: $uni-bg-wrapper-color;
+          border-radius: 0 0 8px 8px;
           .item_content_name {
-            padding: 0 4px;
-            margin: 4px 0;
+            padding: 4px 4px;
             color: $uni-text-color-name;
             font-size: $uni-font-size-14;
             white-space: normal;
