@@ -2,11 +2,12 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-20 16:50:40
+ * @LastEditTime: 2022-08-20 16:54:53
  * @Description: 
 -->
 <template>
   <view class="container">
+    <!-- 搜索框 -->
     <uni-search-bar
       radius="20"
       bgColor="#000"
@@ -18,6 +19,7 @@
     >
     </uni-search-bar>
 
+    <!-- 轮播图 -->
     <view class="swiper_box">
       <swiper
         class="swiper"
@@ -37,6 +39,7 @@
       </swiper>
     </view>
 
+    <!-- card导航 -->
     <view>
       <view class="hot_cate">
         <view class="hot_cate_item" v-for="item in hostList" :key="item.src">
@@ -47,7 +50,7 @@
         </view>
       </view>
     </view>
-    <!-- 偏好推荐 -->
+    <!-- 热门课程 -->
     <view class="preferences_wrapper">
       <view class="preferences" v-for="item in courseList" :key="item.type">
         <h2 class="preferences_title">
