@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-20 11:52:23
+ * @LastEditTime: 2022-08-20 14:04:03
  * @Description: 
 -->
 <template>
@@ -29,16 +29,10 @@
         indicator-active-color="#26B7FF"
         :duration="500"
       >
-        <swiper-item>
+        <swiper-item v-for="item in bannerList" :key="item.src">
           <view class="swiper_item uni_bg_red">
-            <image src="" />
+            <image mode="heightFix" :src="item.src" />
           </view>
-        </swiper-item>
-        <swiper-item>
-          <view class="swiper_item uni_bg_green"></view>
-        </swiper-item>
-        <swiper-item>
-          <view class="swiper_item uni_bg_blue"></view>
         </swiper-item>
       </swiper>
     </view>
@@ -57,34 +51,14 @@
 </template>
 
 <script>
-const hotCateList = [
-  {
-    src: 'https://p.qpic.cn/qqconadmin/0/f310ebac024349818a459aa1f5413042/0',
-    name: '后台开发',
-  },
-  {
-    src: 'https://p.qpic.cn/qqconadmin/0/38e56d79465841839852e652661d507a/0',
-    name: '前端开发',
-  },
-  {
-    src: 'https://p.qpic.cn/qqconadmin/0/c5f85eeb180149f7b2f1a1e6894f8df9/0',
-    name: '云计算',
-  },
-  {
-    src: '	https://p.qpic.cn/qqconadmin/0/e7c8a2649635424ab82faad7fa9b2c3a/0',
-    name: '大数据',
-  },
-  {
-    src: 'https://p.qpic.cn/qqconadmin/0/9b248c95c0c44301b4155d9ac173c9a1/0',
-    name: '全部分类',
-  },
-];
+import { hotCateList, bannerList } from '@/common/constant.js';
 export default {
   data() {
     return {
       title: 'Hello',
       searchValue: '',
-      hostList: hotCateList,
+      hostList: Object.freeze(hotCateList),
+      bannerList: Object.freeze(bannerList),
     };
   },
   onLoad() {},
@@ -108,15 +82,7 @@ export default {
   .swiper_item {
     width: 100%;
     height: 100%;
-  }
-  .uni_bg_red {
-    background: red;
-  }
-  .uni_bg_green {
-    background: green;
-  }
-  .uni_bg_blue {
-    background: blue;
+    background: #000;
   }
 }
 
