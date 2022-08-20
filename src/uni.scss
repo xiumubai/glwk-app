@@ -12,8 +12,8 @@
  * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
  */
 
-@import './static/styles/uni-defult.scss';
-@import './static/styles/global.scss';
+@import './static/styles/_uni-defult.scss';
+// @import './static/styles/_global.scss';
 /* 颜色变量 */
 
 /* 行为相关颜色 */
@@ -35,6 +35,7 @@ $uni-bg-color-grey: #f8f8f8;
 $uni-bg-color-hover: #f1f1f1; //点击状态颜色
 $uni-bg-color-mask: rgba(0, 0, 0, 0.4); //遮罩颜色
 $uni-bg-container-color: #17181a;
+$uni-gradient-bg-color: linear-gradient(180deg, #17181a, #17181a 60%, #050505);
 /* 边框颜色 */
 $uni-border-color: #c8c7cc;
 
@@ -57,7 +58,7 @@ $uni-border-radius-lg: 12rpx;
 $uni-border-radius-circle: 50%;
 
 /* 水平间距 */
-$uni-spacing-row-sm: 10px;
+$uni-spacing-row-sm: 12px;
 $uni-spacing-row-base: 20rpx;
 $uni-spacing-row-lg: 30rpx;
 

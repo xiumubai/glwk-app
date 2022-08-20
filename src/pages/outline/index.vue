@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:52
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-19 18:36:24
+ * @LastEditTime: 2022-08-20 09:46:29
  * @Description: 
 -->
 <template>
@@ -27,5 +27,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('@/static/styles/global.scss');
+@import url('@/static/styles/_global.scss');
 </style>
