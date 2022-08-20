@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-20 14:04:03
+ * @LastEditTime: 2022-08-20 14:44:22
  * @Description: 
 -->
 <template>
@@ -45,6 +45,22 @@
             <text class="hot_cate_item_name">{{ item.name }}</text>
           </navigator>
         </view>
+      </view>
+    </view>
+    <!-- 偏好推荐 -->
+    <view class="preferences">
+      <h2 class="preferences_title">
+        精选推荐
+        <navigator class="link">
+          查看更多
+          <uni-icons type="right" size="12"></uni-icons>
+        </navigator>
+      </h2>
+      <view class="preferences_list">
+        <view class="preferences_list_item">list</view>
+        <view class="preferences_list_item">list</view>
+        <view class="preferences_list_item">list</view>
+        <view class="preferences_list_item">list</view>
       </view>
     </view>
   </view>
@@ -112,15 +128,33 @@ export default {
     }
   }
 }
-.artical > .section {
-  color: red;
-}
-
-.artical + .p {
-  color: blue;
-}
-
-.artical ~ .div {
-  color: green;
+.preferences {
+  padding: 24px 16px;
+  &_title {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    .link {
+      font-size: 12px;
+      color: #737780;
+    }
+  }
+  &_list {
+    &_item {
+      padding-bottom: 8px;
+      display: inline-block;
+      width: 50%;
+      box-sizing: border-box;
+      &:nth-child(2n-1) {
+        padding-right: 4px;
+      }
+      &:nth-child(2n) {
+        padding-left: 4px;
+      }
+    }
+  }
 }
 </style>
