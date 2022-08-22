@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:47:09
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 15:54:28
+ * @LastEditTime: 2022-08-22 16:52:37
  * @Description:
  */
 import store from '@/store/index';
@@ -12,10 +12,10 @@ import APIConfig from '@/config';
 let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
   console.log('开发环境');
-  baseUrl = 'http://demonuxtapi.dishait.cn/mobile';
+  baseUrl = 'https://gmall-prod.atguigu.cn/skb';
 } else {
   console.log('生产环境');
-  // baseUrl = 'https://cnodejs.org/api/v1/';
+  baseUrl = 'https://gmall-prod.atguigu.cn/skb';
 }
 
 class Service {
@@ -53,6 +53,7 @@ class Service {
       delete header.Authorization;
     }
 
+    console.log(opts);
     return new Promise((resolve, reject) => {
       uni.request({
         url: baseUrl + opts.url,

@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 09:41:44
+ * @LastEditTime: 2022-08-22 17:01:56
  * @Description: 
 -->
 <template>
@@ -33,7 +33,7 @@
       >
         <swiper-item v-for="item in bannerList" :key="item.src">
           <view class="swiper_item uni_bg_red">
-            <image mode="heightFix" :src="item.src" />
+            <image mode="heightFix" :src="item.imageUrl" />
           </view>
         </swiper-item>
       </swiper>
@@ -93,6 +93,7 @@
 
 <script>
 import { hotCateList, bannerList, courseList } from '@/common/constant.js';
+import courseService from '@/services/course';
 export default {
   data() {
     return {
@@ -104,16 +105,19 @@ export default {
     };
   },
   onLoad() {
-    console.log('token', this.$store.state.token);
-
-    uni.request({
-      url: 'https://atguigu.com/api/cms/banner',
-      success: (res) => {
-        console.log(res.data);
-      },
-    });
+    this.getBannerList();
   },
+
   methods: {
+    // 获取banner
+    async getBannerList() {
+      try {
+        const res = await courseService.banner();
+        this.bannerList = res.data.bannerList;
+      } catch (e) {
+        console.log('e', e);
+      }
+    },
     search(res) {
       uni.showToast({
         title: '搜索：' + res.value,
