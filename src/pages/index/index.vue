@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-20 16:54:53
+ * @LastEditTime: 2022-08-22 09:41:44
  * @Description: 
 -->
 <template>
@@ -103,7 +103,16 @@ export default {
       courseList: Object.freeze(courseList),
     };
   },
-  onLoad() {},
+  onLoad() {
+    console.log('token', this.$store.state.token);
+
+    uni.request({
+      url: 'https://atguigu.com/api/cms/banner',
+      success: (res) => {
+        console.log(res.data);
+      },
+    });
+  },
   methods: {
     search(res) {
       uni.showToast({
