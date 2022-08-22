@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 18:17:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 11:57:48
+ * @LastEditTime: 2022-08-22 15:30:22
  * @Description: 
 -->
 <template>
@@ -10,20 +10,20 @@
     <view class="login_content">
       <view class="login_logo"></view>
       <view class="login_main_type">
-        <view class="login_main_type_item">
+        <button class="login_main_type_item" @click="handleLogin">
           <image
             src="https://7.idqqimg.com/edu/mobilev2/m-core/15ed8902614ba6ac08b25fd9039e532a.png"
           />
           <text>QQ登陆</text>
-        </view>
-        <view class="login_main_type_item">
+        </button>
+        <button class="login_main_type_item" @click="handleLogin('weixin')">
           <image
             src="https://7.idqqimg.com/edu/mobilev2/m-core/a1447893821a2003463b10e7c9b39926.png"
           />
           <text>微信登陆</text>
-        </view>
+        </button>
       </view>
-      <view class="login_more">更多登录方式</view>
+      <view class="login_more" @click="handleLogin('other')">更多登录方式</view>
     </view>
     <view class="login_footer">
       <view class="login_protocol">
@@ -33,9 +33,9 @@
         ></view>
         <view class="login_block">
           我已阅读并同意
-          <navigator class="link">服务协议</navigator>
+          <navigator class="link">用户协议</navigator>
           和
-          <navigator class="link">隐私政策</navigator>
+          <navigator class="link">隐私声明</navigator>
         </view>
       </view>
     </view>
@@ -58,7 +58,50 @@ export default {
     handleChecked() {
       this.checked = !this.checked;
     },
-    async handleLogin() {
+
+    handleLogin(type) {
+      // 检测是否已经同意协议
+      if (!this.checked) {
+        return uni.showToast({
+          title: '请已阅读并同意用户协议&隐私声明',
+          icon: 'none',
+          position: 'bottom',
+        });
+      }
+
+      // 区分不同的登陆方式
+      if (type === 'qq') {
+        // qq登陆
+        return uni.showToast({
+          title: 'QQ 登陆功能暂未开放',
+          icon: 'none',
+          position: 'top',
+        });
+      } else if (type == 'weixin') {
+        // 微信登陆
+        this.mpWeiixnLogin();
+      } else {
+        // 手机号+验证码登陆
+      }
+    },
+
+    mpWeiixnLogin() {
+      uni.login({
+        success(res) {
+          // 获取到code
+          const code = res.code;
+          console.log('code', code);
+        },
+      });
+      // 获取用户信息
+      uni.getUserProfile({
+        desc: '用于完善会员资料',
+        success: (res) => {
+          console.log('userinfo', res);
+        },
+      });
+    },
+    async login() {
       try {
         const res = await userService.login({
           url: '/login',
