@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:34:58
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 09:35:35
+ * @LastEditTime: 2022-08-22 16:13:46
  * @Description:
  */
 import Vue from 'vue';
@@ -12,7 +12,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    token: uni.getStorageSync(TOKEN_KEY) || '12313',
+    token: uni.getStorageSync(TOKEN_KEY) || '',
     user: JSON.parse(uni.getStorageSync(USER_KEY) || '{}'),
   },
   getters: {},

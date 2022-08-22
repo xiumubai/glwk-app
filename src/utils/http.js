@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:47:09
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 10:31:40
+ * @LastEditTime: 2022-08-22 15:54:28
  * @Description:
  */
 import store from '@/store/index';
@@ -72,6 +72,7 @@ class Service {
                     uni.redirectTo({
                       url: '/pages/login/index',
                     });
+
                     uni.clearStorageSync();
                   } else if (res.cancel) {
                     uni.switchTab({

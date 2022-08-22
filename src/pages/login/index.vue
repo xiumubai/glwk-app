@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 18:17:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 15:30:22
+ * @LastEditTime: 2022-08-22 16:06:04
  * @Description: 
 -->
 <template>
@@ -98,6 +98,22 @@ export default {
         desc: '用于完善会员资料',
         success: (res) => {
           console.log('userinfo', res);
+          // 登陆成功，保存token，返回个人页面
+          this.$store.dispatch('setUser', {
+            ...res.userInfo,
+            token: 'sdhfljasdhjfahffuffew',
+          });
+
+          uni.showToast({
+            title: '登陆成功',
+            icon: 'success',
+            success: () => {
+              // 跳转到个人页面
+              uni.switchTab({
+                url: '/pages/user/index',
+              });
+            },
+          });
         },
       });
     },

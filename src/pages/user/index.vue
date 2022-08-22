@@ -2,18 +2,15 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-20 17:47:16
+ * @LastEditTime: 2022-08-22 16:09:58
  * @Description: 
 -->
 <template>
   <view class="container">
     <view class="info dark-mode">
       <h1 class="info_title">
-        <image
-          class="info_title_logo"
-          src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJCzAG0lh2uzKeiad4V3Sj8dCIAeC1coAaGQoqQGZVD2clAubcEJIgUhu7uAogjHib4FsPZCl6IpsLA/132"
-        />
-        <text class="info_title_name">朽木白</text>
+        <image class="info_title_logo" :src="user.avatarUrl" />
+        <text class="info_title_name">{{ user.nickName }}</text>
       </h1>
       <view class="info_list">
         <view class="info_item">
@@ -39,9 +36,19 @@ export default {
   data() {
     return {
       title: 'Hello',
+      isLogin: false,
+      user: {},
     };
   },
-  onLoad() {},
+  onLoad() {
+    this.user = this.$store.state.user;
+    console.log(this.$store.state.token);
+    if (!this.$store.state.token) {
+      uni.redirectTo({
+        url: '/pages/login/index',
+      });
+    }
+  },
   methods: {},
 };
 </script>
