@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 17:01:56
+ * @LastEditTime: 2022-08-22 17:45:28
  * @Description: 
 -->
 <template>
@@ -52,23 +52,23 @@
     </view>
     <!-- 热门课程 -->
     <view class="preferences_wrapper">
-      <view class="preferences" v-for="item in courseList" :key="item.type">
+      <view class="preferences">
         <h2 class="preferences_title">
-          {{ item.name }}
+          热门课程
           <navigator class="link">
-            查看更多
+            全部课程
             <uni-icons type="right" size="12"></uni-icons>
           </navigator>
         </h2>
         <view class="preferences_list">
           <view
             class="preferences_list_item"
-            v-for="(course, index) in item.list"
+            v-for="(course, index) in courseList"
             :key="index"
           >
             <navigator class="list_item_card">
               <view class="list_item_card_img">
-                <image alt="课程封面" mode="widthFix" :src="course.src" />
+                <image alt="课程封面" mode="widthFix" :src="course.cover" />
               </view>
               <view class="list_item_card_content">
                 <h3 class="item_content_name">
@@ -76,11 +76,13 @@
                 </h3>
                 <view class="item_content__labal">
                   <uni-icons type="fire" size="18" color="#fa3f4e"></uni-icons>
-                  <text class="study_num">{{ course.studyNum }}人已学习</text>
+                  <text class="study_num">{{ course.lessonNum }}人已学习</text>
                 </view>
                 <view class="item-content_footer">
                   <view class="footer_price">¥{{ course.price }}</view>
-                  <view class="footer_buy_num">{{ course.buyNum }}人购买</view>
+                  <view class="footer_buy_num"
+                    >{{ course.buyCount }}人购买</view
+                  >
                 </view>
               </view>
             </navigator>
@@ -102,10 +104,12 @@ export default {
       hostList: Object.freeze(hotCateList),
       bannerList: Object.freeze(bannerList),
       courseList: Object.freeze(courseList),
+      teacherList: Object.freeze([]),
     };
   },
   onLoad() {
     this.getBannerList();
+    this.getCourseList();
   },
 
   methods: {
@@ -114,6 +118,18 @@ export default {
       try {
         const res = await courseService.banner();
         this.bannerList = res.data.bannerList;
+      } catch (e) {
+        console.log('e', e);
+      }
+    },
+
+    // 获取热门课程和名师列表
+    async getCourseList() {
+      try {
+        const res = await courseService.indexCourse();
+        this.teacherList = res.data.teacherList;
+        this.courseList = res.data.courseList;
+        console.log('res', res);
       } catch (e) {
         console.log('e', e);
       }
@@ -217,6 +233,7 @@ export default {
           background: $uni-bg-wrapper-color;
           border-radius: 0 0 8px 8px;
           .item_content_name {
+            height: 40px;
             padding: 4px 4px;
             color: $uni-text-color-name;
             font-size: $uni-font-size-14;
