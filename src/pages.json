@@ -23,6 +23,12 @@
       "style": {
         "navigationBarTitleText": "登陆"
       }
+    },
+    {
+      "path": "pages/login/phone",
+      "style": {
+        "navigationBarTitleText": "手机号登陆"
+      }
     }
   ],
   "tabBar": {
