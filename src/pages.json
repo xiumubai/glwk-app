@@ -46,7 +46,7 @@
         "pagePath": "pages/outline/index",
         "iconPath": "static/images/nav/list-off.png",
         "selectedIconPath": "static/images/nav/list-on.png",
-        "text": "名师"
+        "text": "课程"
       },
       {
         "pagePath": "pages/user/index",
