@@ -2,8 +2,8 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 14:00:15
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-20 16:00:30
- * @Description:
+ * @LastEditTime: 2022-08-22 17:48:33
+ * @Description: 模拟数据，务删除
  */
 export const hotCateList = [
   {

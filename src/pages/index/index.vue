@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 17:45:28
+ * @LastEditTime: 2022-08-22 18:11:48
  * @Description: 
 -->
 <template>
@@ -89,18 +89,50 @@
           </view>
         </view>
       </view>
+
+      <view class="preferences">
+        <h2 class="preferences_title">
+          名师大咖
+          <navigator class="link">
+            全部名师
+            <uni-icons type="right" size="12"></uni-icons>
+          </navigator>
+        </h2>
+        <view class="preferences_list">
+          <view
+            class="preferences_list_item"
+            v-for="(teacher, index) in teacherList"
+            :key="index"
+          >
+            <navigator class="list_item_card">
+              <view class="list_item_card_img">
+                <image alt="名师封面" mode="aspectFit" :src="teacher.avatar" />
+              </view>
+              <view class="list_item_card_content">
+                <h3 class="item_content_name">
+                  {{ teacher.intro }}
+                </h3>
+                <view class="item_content__labal">
+                  <text class="study_num teacher_name">{{ teacher.name }}</text>
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
 </template>
 
 <script>
+// 默认模拟数据，可删除
 import { hotCateList, bannerList, courseList } from '@/common/constant.js';
 import courseService from '@/services/course';
 export default {
   data() {
     return {
-      title: 'Hello',
       searchValue: '',
+      // Object.freeze,静态渲染数据，不可修改
       hostList: Object.freeze(hotCateList),
       bannerList: Object.freeze(bannerList),
       courseList: Object.freeze(courseList),
@@ -252,6 +284,13 @@ export default {
               font-size: $uni-font-size-12;
               color: $uni-text-color-name;
               margin-left: 4px;
+            }
+
+            .teacher_name {
+              color: #68cb9b;
+              margin-left: 0;
+              font-size: 14px;
+              margin-bottom: 4px;
             }
           }
           .item-content_footer {
