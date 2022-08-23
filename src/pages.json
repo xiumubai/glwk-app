@@ -35,6 +35,18 @@
       "style": {
         "navigationBarTitleText": "名师大咖"
       }
+    },
+    {
+      "path": "pages/teacher/detail",
+      "style": {
+        "navigationBarTitleText": "名师大咖"
+      }
+    },
+    {
+      "path": "pages/course/detail",
+      "style": {
+        "navigationBarTitleText": "谷粒微课"
+      }
     }
   ],
   "tabBar": {
