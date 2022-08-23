@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 18:12:47
+ * @LastEditTime: 2022-08-23 18:16:17
  * @Description: 
 -->
 <template>
@@ -51,6 +51,7 @@ export default {
   onLoad() {
     this.getCourseList();
   },
+  // 监听滚动事件最外层view不能添加css样式overflow：scroll
   onReachBottom() {
     if (this.status !== 'noMore') {
       this.status = 'loading';
