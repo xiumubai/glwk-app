@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 14:23:04
+ * @LastEditTime: 2022-08-23 15:37:02
  * @Description: 
 -->
 <template>
@@ -11,7 +11,7 @@
       <view class="teacher_item" v-for="item in list" :key="item.id">
         <navigator :url="'/pages/teacher/detail?id=' + item.id" class="item_a">
           <view class="teacher_logo">
-            <image :src="item.avatar" />
+            <image mode="aspectFill" :src="item.avatar" />
           </view>
           <view class="teacher_name">{{ item.name }}</view>
           <view class="teacher_intro">{{ item.intro }}</view>
@@ -54,7 +54,6 @@ export default {
   overflow: scroll;
 }
 .teacher_list {
-  // display: flex;
   padding: 24px 16px;
   .teacher_item {
     width: 50%;
@@ -74,7 +73,6 @@ export default {
       flex-direction: column;
       align-items: center;
       width: 100%;
-      // padding: 10px;
       text-align: center;
       background: #1f2228;
       .teacher_logo {

@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 15:34:09
+ * @LastEditTime: 2022-08-23 15:45:45
  * @Description: 
 -->
 <template>
@@ -23,7 +23,12 @@
       <h3 class="title">主讲课程</h3>
 
       <view class="main_course">
-        <v-card-list type="course" :list="detailData.courseList"></v-card-list>
+        <v-card-list
+          v-if="detailData.courseList.length > 0"
+          type="course"
+          :list="detailData.courseList"
+        ></v-card-list>
+        <!-- <uni-load-more v-else contentText="暂无课程" /> -->
       </view>
     </view>
   </view>
