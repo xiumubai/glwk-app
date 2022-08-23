@@ -2,11 +2,11 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 16:50:58
+ * @LastEditTime: 2022-08-23 17:15:54
  * @Description: 
 -->
 <template>
-  <div class="container course">
+  <div class="container">
     <v-search-bar @search="search"></v-search-bar>
     <view class="filter"></view>
     <view class="course_list">
@@ -25,6 +25,7 @@
         </navigator>
       </view>
     </view>
+
     <v-back-top></v-back-top>
   </div>
 </template>
@@ -46,7 +47,6 @@ export default {
   },
   // 监听滚动事件，控制返回顶部按钮
   onPageScroll(res) {
-    console.log('gund');
     uni.$emit('onPageScroll', res);
   },
   methods: {
@@ -75,8 +75,9 @@ export default {
 <style scoped lang="scss">
 @import url('@/static/styles/_global.scss');
 
-.course {
-  overflow: scroll;
+.course_list {
+  background: #000;
+  padding-bottom: 1px;
 }
 .course_list_item {
   margin: 15px 15px;
