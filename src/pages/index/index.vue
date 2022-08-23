@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 15:26:15
+ * @LastEditTime: 2022-08-23 16:48:09
  * @Description: 
 -->
 <template>
@@ -59,6 +59,8 @@
         <v-card-list type="teacher" :list="teacherList"></v-card-list>
       </v-card>
     </view>
+
+    <v-back-top></v-back-top>
   </view>
 </template>
 
@@ -69,7 +71,6 @@ import courseService from '@/services/course';
 export default {
   data() {
     return {
-      searchValue: '',
       // Object.freeze,静态渲染数据，不可修改
       hostList: Object.freeze(hotCateList),
       bannerList: Object.freeze(bannerList),
@@ -81,7 +82,10 @@ export default {
     this.getBannerList();
     this.getCourseList();
   },
-
+  // 监听滚动事件，控制返回顶部按钮
+  onPageScroll(res) {
+    uni.$emit('onPageScroll', res);
+  },
   methods: {
     // 获取banner
     async getBannerList() {
@@ -106,8 +110,6 @@ export default {
     },
     focus() {
       // 点击首页搜索框，跳转到课程页面
-      console.log('123');
-
       uni.switchTab({
         url: '/pages/course/index',
       });

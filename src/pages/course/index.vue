@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 10:14:11
+ * @LastEditTime: 2022-08-23 16:50:58
  * @Description: 
 -->
 <template>
@@ -25,6 +25,7 @@
         </navigator>
       </view>
     </view>
+    <v-back-top></v-back-top>
   </div>
 </template>
 
@@ -39,6 +40,14 @@ export default {
   },
   onLoad() {
     this.getCourseList();
+  },
+  onReachBottom() {
+    console.log('触底了');
+  },
+  // 监听滚动事件，控制返回顶部按钮
+  onPageScroll(res) {
+    console.log('gund');
+    uni.$emit('onPageScroll', res);
   },
   methods: {
     async getCourseList() {
