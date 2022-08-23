@@ -29,6 +29,12 @@
       "style": {
         "navigationBarTitleText": "手机号登陆"
       }
+    },
+    {
+      "path": "pages/teacher/index",
+      "style": {
+        "navigationBarTitleText": "名师大咖"
+      }
     }
   ],
   "tabBar": {

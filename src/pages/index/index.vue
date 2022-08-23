@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 08:43:06
+ * @LastEditTime: 2022-08-23 11:04:36
  * @Description: 
 -->
 <template>
@@ -40,76 +40,24 @@
         </view>
       </view>
     </view>
-    <!-- 热门课程 -->
+    <!-- 热门 -->
     <view class="preferences_wrapper">
-      <view class="preferences">
-        <h2 class="preferences_title">
-          热门课程
-          <navigator class="link">
-            全部课程
-            <uni-icons type="right" size="12"></uni-icons>
-          </navigator>
-        </h2>
-        <view class="preferences_list">
-          <view
-            class="preferences_list_item"
-            v-for="(course, index) in courseList"
-            :key="index"
-          >
-            <navigator class="list_item_card">
-              <view class="list_item_card_img">
-                <image alt="课程封面" mode="widthFix" :src="course.cover" />
-              </view>
-              <view class="list_item_card_content">
-                <h3 class="item_content_name">
-                  {{ course.title }}
-                </h3>
-                <view class="item_content__labal">
-                  <uni-icons type="fire" size="18" color="#fa3f4e"></uni-icons>
-                  <text class="study_num">{{ course.lessonNum }}人已学习</text>
-                </view>
-                <view class="item-content_footer">
-                  <view class="footer_price">¥{{ course.price }}</view>
-                  <view class="footer_buy_num"
-                    >{{ course.buyCount }}人购买</view
-                  >
-                </view>
-              </view>
-            </navigator>
-          </view>
-        </view>
-      </view>
-
-      <view class="preferences">
-        <h2 class="preferences_title">
-          名师大咖
-          <navigator class="link">
-            全部名师
-            <uni-icons type="right" size="12"></uni-icons>
-          </navigator>
-        </h2>
-        <view class="preferences_list">
-          <view
-            class="preferences_list_item"
-            v-for="(teacher, index) in teacherList"
-            :key="index"
-          >
-            <navigator class="list_item_card">
-              <view class="list_item_card_img">
-                <image alt="名师封面" mode="aspectFit" :src="teacher.avatar" />
-              </view>
-              <view class="list_item_card_content">
-                <h3 class="item_content_name">
-                  {{ teacher.intro }}
-                </h3>
-                <view class="item_content__labal">
-                  <text class="study_num teacher_name">{{ teacher.name }}</text>
-                </view>
-              </view>
-            </navigator>
-          </view>
-        </view>
-      </view>
+      <v-card-list
+        title="热门课程"
+        linkTitle="全部课程"
+        type="course"
+        link="/pages/course/index"
+        @navigateTo="navigateTo"
+        :list="courseList"
+      ></v-card-list>
+      <v-card-list
+        title="名师大咖"
+        linkTitle="全部名师"
+        type="teacher"
+        link="/pages/teacher/index"
+        @navigateTo="navigateTo"
+        :list="teacherList"
+      ></v-card-list>
     </view>
   </view>
 </template>
@@ -164,6 +112,13 @@ export default {
         url: '/pages/course/index',
       });
     },
+    navigateTo(link, type) {
+      if (type === 'course') {
+        uni.switchTab({ url: link });
+      } else if (type === 'teacher') {
+        uni.navigateTo({ url: link });
+      }
+    },
   },
 };
 </script>
@@ -210,98 +165,5 @@ export default {
 
 .preferences_wrapper {
   background: $uni-bg-color;
-}
-.preferences {
-  padding: 0 16px 24px 16px;
-  &_title {
-    color: $uni-text-color-white;
-    font-size: 14px;
-    margin-bottom: 10px;
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    .link {
-      font-size: $uni-font-size-12;
-      color: $uni-text-color;
-    }
-  }
-  &_list {
-    &_item {
-      padding-bottom: 8px;
-      display: inline-block;
-      width: 50%;
-      box-sizing: border-box;
-      &:nth-child(2n-1) {
-        padding-right: 4px;
-      }
-      &:nth-child(2n) {
-        padding-left: 4px;
-      }
-      .list_item_card {
-        display: block;
-        width: 100%;
-        &_img {
-          width: 100%;
-          height: 95px;
-          background-image: url('https://8.idqqimg.com/edu/mobilev2/m-core/3d1dd248376a6da4a15e0000184f44c6.png');
-          background-repeat: no-repeat;
-          background-size: contain;
-          border-radius: 8px 8px 0 0;
-          image {
-            height: 100%;
-            width: 100%;
-            border-radius: 8px 8px 0 0;
-          }
-        }
-        &_content {
-          background: $uni-bg-wrapper-color;
-          border-radius: 0 0 8px 8px;
-          .item_content_name {
-            height: 40px;
-            padding: 4px 4px;
-            color: $uni-text-color-name;
-            font-size: $uni-font-size-14;
-            white-space: normal;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-          }
-          .item_content__labal {
-            display: flex;
-            align-items: center;
-            padding: 0 4px;
-            .study_num {
-              font-size: $uni-font-size-12;
-              color: $uni-text-color-name;
-              margin-left: 4px;
-            }
-
-            .teacher_name {
-              color: #68cb9b;
-              margin-left: 0;
-              font-size: 14px;
-              margin-bottom: 4px;
-            }
-          }
-          .item-content_footer {
-            display: flex;
-            align-items: center;
-            padding: 4px;
-            .footer_price {
-              font-size: $uni-font-size-16;
-              color: $price-font-color;
-              margin-right: $uni-spacing-4;
-            }
-            .footer_buy_num {
-              font-size: $uni-font-size-12;
-              color: $uni-text-color-name;
-            }
-          }
-        }
-      }
-    }
-  }
 }
 </style>
