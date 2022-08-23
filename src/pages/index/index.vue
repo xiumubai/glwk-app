@@ -2,23 +2,13 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 18:11:48
+ * @LastEditTime: 2022-08-23 08:43:06
  * @Description: 
 -->
 <template>
   <view class="container">
     <!-- 搜索框 -->
-    <uni-search-bar
-      radius="20"
-      bgColor="#000"
-      placeholder="找知识、找培训、找老师"
-      v-model="searchValue"
-      clearButton="auto"
-      cancelButton="none"
-      @confirm="search"
-    >
-    </uni-search-bar>
-
+    <v-search-bar @focus="focus"></v-search-bar>
     <!-- 轮播图 -->
     <view class="swiper_box">
       <swiper
@@ -166,10 +156,12 @@ export default {
         console.log('e', e);
       }
     },
-    search(res) {
-      uni.showToast({
-        title: '搜索：' + res.value,
-        icon: 'none',
+    focus() {
+      // 点击首页搜索框，跳转到课程页面
+      console.log('123');
+
+      uni.switchTab({
+        url: '/pages/course/index',
       });
     },
   },
