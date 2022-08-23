@@ -2,14 +2,14 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 11:52:43
+ * @LastEditTime: 2022-08-23 14:23:04
  * @Description: 
 -->
 <template>
   <view class="container teacher">
     <view class="teacher_list">
       <view class="teacher_item" v-for="item in list" :key="item.id">
-        <navigator url="/pages/teacher/detail" class="item_a">
+        <navigator :url="'/pages/teacher/detail?id=' + item.id" class="item_a">
           <view class="teacher_logo">
             <image :src="item.avatar" />
           </view>

@@ -39,7 +39,7 @@
     {
       "path": "pages/teacher/detail",
       "style": {
-        "navigationBarTitleText": "名师大咖"
+        "navigationBarTitleText": "名师介绍"
       }
     },
     {

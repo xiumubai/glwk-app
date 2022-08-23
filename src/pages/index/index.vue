@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 11:04:36
+ * @LastEditTime: 2022-08-23 15:26:15
  * @Description: 
 -->
 <template>
@@ -42,22 +42,22 @@
     </view>
     <!-- 热门 -->
     <view class="preferences_wrapper">
-      <v-card-list
+      <v-card
         title="热门课程"
         linkTitle="全部课程"
         type="course"
         link="/pages/course/index"
-        @navigateTo="navigateTo"
-        :list="courseList"
-      ></v-card-list>
-      <v-card-list
+      >
+        <v-card-list type="course" :list="courseList"></v-card-list>
+      </v-card>
+      <v-card
         title="名师大咖"
         linkTitle="全部名师"
         type="teacher"
         link="/pages/teacher/index"
-        @navigateTo="navigateTo"
-        :list="teacherList"
-      ></v-card-list>
+      >
+        <v-card-list type="teacher" :list="teacherList"></v-card-list>
+      </v-card>
     </view>
   </view>
 </template>
