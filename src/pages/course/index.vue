@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 17:15:54
+ * @LastEditTime: 2022-08-23 17:59:38
  * @Description: 
 -->
 <template>
@@ -24,6 +24,10 @@
           </view>
         </navigator>
       </view>
+      <!-- 加载更多 -->
+      <view class="load_more">
+        <uni-load-more :status="status" />
+      </view>
     </view>
 
     <v-back-top></v-back-top>
@@ -37,13 +41,23 @@ export default {
   data() {
     return {
       list: [],
+      params: {
+        page: 1,
+        limit: 10,
+      },
+      status: 'more',
     };
   },
   onLoad() {
     this.getCourseList();
   },
   onReachBottom() {
-    console.log('触底了');
+    // console.log('触底了');
+    if (this.status !== 'noMore') {
+      this.status = 'loading';
+      this.params.page++;
+      this.getCourseList();
+    }
   },
   // 监听滚动事件，控制返回顶部按钮
   onPageScroll(res) {
@@ -53,11 +67,14 @@ export default {
     async getCourseList() {
       try {
         const res = await courseService.courseList({
-          page: 1,
-          limit: 10,
+          ...this.params,
         });
-        console.log('res', res);
-        this.list = res.data.items;
+        const items = res.data.items;
+        if (items.length === 0) return (this.status = 'noMore');
+        if (items.length >= 10) this.status = 'more';
+
+        // 数组解构拼接
+        this.list = [...this.list, ...items];
       } catch (e) {
         console.log('e', e);
       }
@@ -78,6 +95,12 @@ export default {
 .course_list {
   background: #000;
   padding-bottom: 1px;
+}
+
+.load_more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .course_list_item {
   margin: 15px 15px;
