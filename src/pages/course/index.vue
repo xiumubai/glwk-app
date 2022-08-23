@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 17:59:38
+ * @LastEditTime: 2022-08-23 18:12:47
  * @Description: 
 -->
 <template>
@@ -52,7 +52,6 @@ export default {
     this.getCourseList();
   },
   onReachBottom() {
-    // console.log('触底了');
     if (this.status !== 'noMore') {
       this.status = 'loading';
       this.params.page++;
@@ -70,11 +69,10 @@ export default {
           ...this.params,
         });
         const items = res.data.items;
-        if (items.length === 0) return (this.status = 'noMore');
-        if (items.length >= 10) this.status = 'more';
-
         // 数组解构拼接
         this.list = [...this.list, ...items];
+        if (items.length < 10) return (this.status = 'noMore');
+        if (items.length >= 10) this.status = 'more';
       } catch (e) {
         console.log('e', e);
       }
@@ -95,12 +93,6 @@ export default {
 .course_list {
   background: #000;
   padding-bottom: 1px;
-}
-
-.load_more {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .course_list_item {
   margin: 15px 15px;

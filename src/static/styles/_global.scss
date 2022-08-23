@@ -9,8 +9,10 @@
 .info-link {
   color: #a1a7b2;
 }
-// @mixin flex-display {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
+
+// 加载更多样式
+.load_more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
