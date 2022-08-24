@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-24 11:23:58
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 12:01:19
+ * @LastEditTime: 2022-08-24 15:10:56
  * @Description: 
 -->
 <template>
@@ -72,6 +72,8 @@ export default {
     font-size: 12px;
     .sticky_item {
       position: relative;
+      width: 100%;
+      text-align: center;
     }
     .active {
       color: #3e414d;
@@ -79,10 +81,11 @@ export default {
         content: '';
         position: absolute;
         display: block;
-        width: 1.14286rem;
-        height: 0.21429rem;
+        width: 20px;
+        height: 3px;
         bottom: 3px;
-        left: 2px;
+        left: 50%;
+        margin-left: -10px;
         background-color: #2080f7;
         border-radius: 6px;
       }
