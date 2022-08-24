@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 18:16:17
+ * @LastEditTime: 2022-08-24 09:41:30
  * @Description: 
 -->
 <template>
@@ -11,7 +11,10 @@
     <view class="filter"></view>
     <view class="course_list">
       <view class="course_list_item" v-for="item in list" :key="item.id">
-        <navigator class="course_list_item_a">
+        <navigator
+          class="course_list_item_a"
+          :url="'/pages/course/detail?id=' + item.id"
+        >
           <view class="item_cover">
             <image :src="item.cover" />
           </view>
