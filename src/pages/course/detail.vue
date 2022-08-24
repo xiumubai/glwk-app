@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 17:45:56
+ * @LastEditTime: 2022-08-24 18:41:51
  * @Description: 
 -->
 <template>
@@ -49,8 +49,42 @@
         <view class="title"> 课程详情 </view>
         <view class="course_detail" v-html="courseDetail.description"> </view>
       </view>
-      <view class="catalogue" id="anchor1">目录</view>
-      <view class="comment" id="anchor2">评价</view>
+      <view class="catalogue" id="anchor1">
+        <view class="title"> 课程目录 </view>
+        <view class="catalogue_list">
+          <uni-collapse ref="collapse">
+            <uni-collapse-item
+              :title="item.title"
+              v-for="item in chapterList"
+              :key="item.id"
+            >
+              <view class="task_list">
+                <view
+                  class="task_items"
+                  v-for="child in item.children"
+                  :key="child.id"
+                >
+                  <image
+                    class="task_type"
+                    src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/f1c59a1527e075f6ebfba3d7ac605f07.png"
+                  />
+                  <view class="task_title">{{ child.title }}</view>
+                  <image
+                    class="task_icon"
+                    src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/064fdd1eb99fcb8bef80085f2b548e4b.png"
+                  />
+                </view>
+              </view>
+            </uni-collapse-item>
+            <uni-collapse-item title="默认开启">
+              <view class="content"></view>
+            </uni-collapse-item>
+          </uni-collapse>
+        </view>
+      </view>
+      <view class="comment" id="anchor2">
+        <view class="title"> 学员评价 </view>
+      </view>
     </view>
     <v-back-top></v-back-top>
   </view>
@@ -215,8 +249,8 @@ export default {
   }
   .intro {
     padding: 0 16px;
-    height: 1000px;
     background: #fff;
+    margin-bottom: 12px;
     .teacher_info {
       display: flex;
       align-items: center;
@@ -253,15 +287,54 @@ export default {
         }
       }
     }
+    .course_detail {
+      padding-bottom: 16px;
+    }
   }
 
   .catalogue {
-    height: 1000px;
-    background: red;
+    padding: 0 16px;
+    background: #fff;
+    margin-bottom: 12px;
+    .catalogue_list {
+      .task_list {
+        .task_items {
+          display: flex;
+          padding: 12px;
+          .task_type {
+            width: 16px;
+            height: 16px;
+          }
+
+          .task_title {
+            flex: 1;
+            font-size: 12px;
+            color: #3e414d;
+            margin-left: 10px;
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: -12px;
+              left: 0;
+              width: 100%;
+              height: 0.07143rem;
+              background-color: #c9d0d6;
+              transform: scaleY(0.5);
+              opacity: 0.5;
+            }
+          }
+
+          .task_icon {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
   }
   .comment {
-    height: 1000px;
-    background: blue;
+    padding: 0 16px;
+    background: #fff;
   }
 }
 </style>
