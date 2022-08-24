@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 17:04:01
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 16:45:23
+ * @LastEditTime: 2022-08-24 15:12:22
  * @Description: 返回顶部按钮
 -->
 <template>
@@ -52,6 +52,7 @@ export default {
     backTop() {
       if (this.scrollHeight > 0) {
         uni.pageScrollTo({
+          duration: 500,
           scrollTop: 0,
           success: () => {
             this.show = false;
