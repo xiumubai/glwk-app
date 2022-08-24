@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-24 16:15:18
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 17:13:22
+ * @LastEditTime: 2022-08-24 17:15:23
  * @Description: 吸顶
 -->
 <template>
@@ -55,7 +55,6 @@ export default {
       query
         .select(`#${_this.sid}`)
         .boundingClientRect((e) => {
-          console.log('stickydom', e);
           _this.fixedParams.fixedTop = e.top;
           _this.fixedParams.fixedH = e.height;
         })

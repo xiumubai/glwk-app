@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 17:07:28
+ * @LastEditTime: 2022-08-24 17:45:56
  * @Description: 
 -->
 <template>
@@ -33,7 +33,22 @@
           <v-tabs :tabList="tabList" @click-tab="clickTab"></v-tabs>
         </v-sticky>
       </view>
-      <view class="intro" id="anchor0">介绍</view>
+      <view class="intro" id="anchor0">
+        <view class="title"> 讲师介绍 </view>
+        <view class="teacher_info">
+          <view class="avatar">
+            <image :src="courseDetail.avatar" />
+          </view>
+          <view class="teacher_desc">
+            <view class="teacher_name"
+              >高级讲师-{{ courseDetail.teacherName }}</view
+            >
+            <view class="teacher_intro">{{ courseDetail.intro }}</view>
+          </view>
+        </view>
+        <view class="title"> 课程详情 </view>
+        <view class="course_detail" v-html="courseDetail.description"> </view>
+      </view>
       <view class="catalogue" id="anchor1">目录</view>
       <view class="comment" id="anchor2">评价</view>
     </view>
@@ -72,6 +87,7 @@ export default {
     /** 获取tab元素属性 */
     const query = uni.createSelectorQuery();
 
+    // 提前保存锚点元素的高度
     query
       .select('#anchor0')
       .boundingClientRect((e) => {
@@ -122,6 +138,8 @@ export default {
       } else {
         top = this.enchorParams.enchorTop3;
       }
+
+      // 锚点定位，滚动到对应的位置
       uni.pageScrollTo({
         duration: 500,
         scrollTop: top,
@@ -190,10 +208,53 @@ export default {
     border-radius: 0 0 12px 12px;
   }
 
-  .intro {
-    height: 1000px;
-    background: #ff7b37;
+  .title {
+    font-size: 16px;
+    color: #3c464f;
+    padding: 16px 0;
   }
+  .intro {
+    padding: 0 16px;
+    height: 1000px;
+    background: #fff;
+    .teacher_info {
+      display: flex;
+      align-items: center;
+      border-radius: 12px;
+      background: #f5f6fa;
+      padding: 12px;
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        image {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+      .teacher_desc {
+        flex: 1;
+        overflow: hidden;
+        margin-left: 10px;
+        .teacher_name {
+          font-size: 12px;
+          color: #3e414d;
+        }
+        .teacher_intro {
+          word-break: break-all;
+          font-size: 12px;
+          color: #666c80;
+          text-align: left;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          word-wrap: normal;
+        }
+      }
+    }
+  }
+
   .catalogue {
     height: 1000px;
     background: red;
