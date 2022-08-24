@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 12:02:44
+ * @LastEditTime: 2022-08-24 14:16:33
  * @Description: 
 -->
 <template>
@@ -30,6 +30,7 @@
 
       <view class="intro bg_white">
         <v-tabs
+          id="tab"
           :class="{ sticky: isfixed }"
           :tabList="tabList"
           @click-tab="clickTab"
@@ -57,14 +58,27 @@ export default {
       courseDetail: {},
       tabList: Object.freeze(tabList),
       isfixed: false,
+      fixedH: 0,
     };
   },
   onLoad(option) {
     this.options = option;
+    const query = uni.createSelectorQuery();
+    query
+      .select('#tab')
+      .boundingClientRect((e) => {
+        console.log('dom', e);
+        this.fixedH = e.top;
+      })
+      .exec();
     this.getCourseDetail();
   },
-  onPageScroll() {
-    this.isfixed = true;
+  onPageScroll(e) {
+    if (this.fixedH > e.scrollTop) {
+      this.isfixed = false;
+    } else {
+      this.isfixed = true;
+    }
   },
   methods: {
     async getCourseDetail() {
