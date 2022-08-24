@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 15:40:01
+ * @LastEditTime: 2022-08-24 17:07:28
  * @Description: 
 -->
 <template>
@@ -29,17 +29,15 @@
       </view>
 
       <view class="tab_wrapper bg_white">
-        <v-tabs
-          id="tab"
-          :class="{ sticky: isfixed }"
-          :tabList="tabList"
-          @click-tab="clickTab"
-        ></v-tabs>
+        <v-sticky sid="tab">
+          <v-tabs :tabList="tabList" @click-tab="clickTab"></v-tabs>
+        </v-sticky>
       </view>
       <view class="intro" id="anchor0">介绍</view>
       <view class="catalogue" id="anchor1">目录</view>
       <view class="comment" id="anchor2">评价</view>
     </view>
+    <v-back-top></v-back-top>
   </view>
 </template>
 
@@ -60,12 +58,7 @@ export default {
       course: {},
       courseDetail: {},
       tabList: Object.freeze(tabList),
-      isfixed: false,
-      /** 吸顶元素属性 */
-      fixedParams: {
-        fixedH: 0, // 元素高度
-        fixedTop: 0, // 元素距离顶部的距离
-      },
+
       enchorParams: {
         enchorTop1: 0,
         enchorTop2: 0,
@@ -78,19 +71,10 @@ export default {
     this.options = option;
     /** 获取tab元素属性 */
     const query = uni.createSelectorQuery();
-    query
-      .select('#tab')
-      .boundingClientRect((e) => {
-        console.log('dom', e);
-        this.fixedParams.fixedTop = e.top;
-        this.fixedParams.fixedH = e.height;
-      })
-      .exec();
 
     query
       .select('#anchor0')
       .boundingClientRect((e) => {
-        console.log('dom', e);
         this.enchorParams.enchorTop1 = e.top;
       })
       .exec();
@@ -98,7 +82,6 @@ export default {
     query
       .select('#anchor1')
       .boundingClientRect((e) => {
-        console.log('dom', e);
         this.enchorParams.enchorTop2 = e.top;
       })
       .exec();
@@ -106,18 +89,13 @@ export default {
     query
       .select('#anchor2')
       .boundingClientRect((e) => {
-        console.log('dom', e);
         this.enchorParams.enchorTop3 = e.top;
       })
       .exec();
     this.getCourseDetail();
   },
   onPageScroll(e) {
-    if (this.fixedParams.fixedTop > e.scrollTop) {
-      this.isfixed = false;
-    } else {
-      this.isfixed = true;
-    }
+    uni.$emit('onPageScroll', e);
   },
   methods: {
     async getCourseDetail() {
@@ -133,8 +111,6 @@ export default {
         console.log('e', e);
       }
     },
-
-    queryClient() {},
     clickTab(index) {
       // 点击tab的时候触发
       const _this = this;
@@ -148,9 +124,8 @@ export default {
       }
       uni.pageScrollTo({
         duration: 500,
-        scrollTop: top - _this.fixedParams.fixedH,
+        scrollTop: top,
       });
-      console.log('index', index);
     },
   },
 };
@@ -201,9 +176,12 @@ export default {
         border: 1px solid #666c80;
         color: #666c80;
         display: inline-block;
-        padding: 2px 6px;
+        padding: 0px 10px;
         font-size: 12px;
+        height: 18px;
         border-radius: 16px;
+        line-height: 18px;
+        margin-right: 8px;
       }
     }
   }
@@ -223,12 +201,6 @@ export default {
   .comment {
     height: 1000px;
     background: blue;
-  }
-  .sticky {
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    z-index: 999;
   }
 }
 </style>
