@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-24 11:23:58
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 11:38:18
+ * @LastEditTime: 2022-08-24 12:01:19
  * @Description: 
 -->
 <template>
@@ -52,6 +52,7 @@ export default {
         return false;
       } else {
         this.current = e.target.dataset.current;
+        this.$emit('clickTab', this.current);
       }
     },
   },
@@ -61,7 +62,8 @@ export default {
 <style scoped lang="scss">
 .sticky_holder {
   height: 40px;
-  border-radius: 0 0 12px 12px;
+  width: 100%;
+
   .sticky_bar {
     display: flex;
     justify-content: space-around;

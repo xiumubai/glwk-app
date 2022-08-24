@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 11:31:02
+ * @LastEditTime: 2022-08-24 12:02:44
  * @Description: 
 -->
 <template>
@@ -28,7 +28,13 @@
         </view>
       </view>
 
-      <v-tabs :tabList="tabList" @click-tab="clickTab"></v-tabs>
+      <view class="intro bg_white">
+        <v-tabs
+          :class="{ sticky: isfixed }"
+          :tabList="tabList"
+          @click-tab="clickTab"
+        ></v-tabs>
+      </view>
     </view>
   </view>
 </template>
@@ -50,11 +56,15 @@ export default {
       course: {},
       courseDetail: {},
       tabList: Object.freeze(tabList),
+      isfixed: false,
     };
   },
   onLoad(option) {
     this.options = option;
     this.getCourseDetail();
+  },
+  onPageScroll() {
+    this.isfixed = true;
   },
   methods: {
     async getCourseDetail() {
@@ -82,6 +92,7 @@ export default {
 
 .course {
   background: #f2f3f8;
+  height: 5000px;
   .banner {
     height: 210px;
     width: 100%;
@@ -127,6 +138,16 @@ export default {
         border-radius: 16px;
       }
     }
+  }
+
+  .intro {
+    border-radius: 0 0 12px 12px;
+  }
+  .sticky {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 999;
   }
 }
 </style>
