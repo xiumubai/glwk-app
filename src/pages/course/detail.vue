@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 13:53:55
+ * @LastEditTime: 2022-08-26 14:02:59
  * @Description: 
 -->
 <template>
@@ -156,34 +156,36 @@ export default {
     const query = uni.createSelectorQuery();
 
     // 提前保存锚点元素的top值
-    query
-      .select('#anchor0')
-      .boundingClientRect((e) => {
-        this.enchorParams.enchorTop1 = e.top;
-      })
-      .exec();
+    this.$nextTick(() => {
+      query
+        .select('#anchor0')
+        .boundingClientRect((e) => {
+          this.enchorParams.enchorTop1 = e.top;
+        })
+        .exec();
+      this.getCourseDetail();
+      query
+        .select('#anchor1')
+        .boundingClientRect((e) => {
+          this.enchorParams.enchorTop2 = e.top;
+        })
+        .exec();
+      this.getCourseDetail();
+      query
+        .select('#anchor2')
+        .boundingClientRect((e) => {
+          this.enchorParams.enchorTop3 = e.top;
+        })
+        .exec();
+    });
     this.getCourseDetail();
-    query
-      .select('#anchor1')
-      .boundingClientRect((e) => {
-        this.enchorParams.enchorTop2 = e.top;
-      })
-      .exec();
-    this.getCourseDetail();
-    query
-      .select('#anchor2')
-      .boundingClientRect((e) => {
-        this.enchorParams.enchorTop3 = e.top;
-      })
-      .exec();
-    this.getCourseDetail();
-    this.getCommeentList();
+    this.getCommentList();
   },
   onPageScroll(e) {
     uni.$emit('onPageScroll', e);
   },
   methods: {
-    async getCommeentList() {
+    async getCommentList() {
       try {
         const res = await userService.commentList({
           page: 1,
@@ -239,6 +241,7 @@ export default {
         console.log('e', e);
       }
     },
+    handleBuy() {},
     handleFavo() {
       this.isCollect = !this.isCollect;
       if (!this.isCollect) {
