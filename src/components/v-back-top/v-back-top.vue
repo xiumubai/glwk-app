@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 17:04:01
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 15:12:22
+ * @LastEditTime: 2022-08-26 11:37:46
  * @Description: 返回顶部按钮
 -->
 <template>
@@ -69,7 +69,7 @@ export default {
   position: fixed;
   right: 10px;
   bottom: 30px;
-  z-index: 1000;
+  z-index: 10000;
   width: 52px;
   height: 52px;
   image {

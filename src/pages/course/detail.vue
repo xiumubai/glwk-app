@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 11:04:51
+ * @LastEditTime: 2022-08-26 12:02:28
  * @Description: 
 -->
 <template>
@@ -102,6 +102,19 @@
       </view>
     </view>
     <v-back-top></v-back-top>
+    <view class="bottom_tabbar">
+      <view class="bottom_wrap">
+        <view class="bottom_button">
+          <view class="favo_button" @click="handleFavo">
+            <view :class="['bg', isCollect ? 'active' : '']"></view>
+            收藏
+          </view>
+        </view>
+        <view class="bottom_main">
+          <view class="buy_button"> 点击购买 </view>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -124,7 +137,7 @@ export default {
       course: {},
       courseDetail: {},
       tabList: Object.freeze(tabList),
-
+      isCollect: false,
       // 锚点元素top值
       enchorParams: {
         enchorTop1: 0,
@@ -191,8 +204,16 @@ export default {
         this.chapterList = res.data.chapterList;
         this.course = res.data;
         this.courseDetail = res.data.course;
+        this.isCollect = res.data.isCollect;
       } catch (e) {
         console.log('e', e);
+      }
+    },
+    async clollectSave() {},
+    handleFavo() {
+      this.isCollect = !this.isCollect;
+      if (!this.isCollect) {
+      } else {
       }
     },
     clickTab(index) {
@@ -388,6 +409,62 @@ export default {
     background: #fff;
 
     .comment_wrapper {
+    }
+  }
+}
+.bottom_tabbar {
+  // background: #fff;
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 86.7%, 0) 0,
+    hsla(0, 0%, 86.7%, 0.2) 0.42857rem,
+    hsla(0, 0%, 86.7%, 0.2) 0.57143rem,
+    #fff 0.64286rem,
+    #fff
+  );
+  padding: 8px 16px 0 16px;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  .bottom_wrap {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .bottom_button {
+    flex: 1;
+    padding: 6px 0;
+    .favo_button {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      font-size: 12px;
+      color: #8797a1;
+      .bg {
+        width: 24px;
+        height: 24px;
+        background-image: url('https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/0cfab2184a7ac26a164fdc334d40d382.png');
+        background-size: 100% 100%;
+        &.active {
+          background-image: url('https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/88b416217e2eca5e9e9f1f3fac1e7f24.png');
+        }
+      }
+    }
+  }
+  .bottom_main {
+    flex: 1;
+    padding: 6px 0;
+    .buy_button {
+      width: 90%;
+      height: 2.85714rem;
+      line-height: 2.85714rem;
+      text-align: center;
+      color: #fff;
+      border: none;
+      font-size: 1.14286rem;
+      border-radius: 7.14286rem;
+      background-color: #ff7a38;
     }
   }
 }
