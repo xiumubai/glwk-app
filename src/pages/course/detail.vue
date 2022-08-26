@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 14:02:59
+ * @LastEditTime: 2022-08-26 15:00:30
  * @Description: 
 -->
 <template>
@@ -101,6 +101,7 @@
         </view>
       </view>
     </view>
+
     <v-back-top></v-back-top>
     <view class="bottom_tabbar">
       <view class="bottom_wrap">
@@ -214,7 +215,7 @@ export default {
     async collectSave() {
       try {
         const res = await courseService.courseCollectSave({
-          courseId: this.courseDetail.id,
+          courseId: String(this.options.id),
         });
         if (res.code === 200) {
           uni.showToast({
@@ -229,7 +230,7 @@ export default {
     async collectRemove() {
       try {
         const res = await courseService.courseCollectRemove({
-          courseId: this.courseDetail.id,
+          courseId: String(this.options.id),
         });
         if (res.code === 200) {
           uni.showToast({
@@ -277,6 +278,7 @@ export default {
 
 .course {
   background: #f2f3f8;
+  padding-bottom: 56px;
   .banner {
     height: 210px;
     width: 100%;
