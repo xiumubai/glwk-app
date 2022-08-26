@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 16:36:39
+ * @LastEditTime: 2022-08-26 17:47:17
  * @Description: 
 -->
 <template>
@@ -62,6 +62,10 @@ export default {
           if (res.confirm) {
             // 退出登陆
             console.log('用户点击确定');
+            uni.redirectTo({
+              url: '/pages/login/index',
+            });
+            uni.clearStorageSync();
           } else if (res.cancel) {
             console.log('用户点击取消');
           }

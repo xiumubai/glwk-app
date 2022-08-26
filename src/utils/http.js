@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:47:09
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 16:52:37
+ * @LastEditTime: 2022-08-26 17:54:37
  * @Description:
  */
 import store from '@/store/index';
@@ -23,6 +23,8 @@ class Service {
     // 监听网络状态
     uni.onNetworkStatusChange((res) => {
       if (!res.isConnected) {
+        console.log('网路无链接');
+
         uni.showToast({
           title: '网络连接不可用！',
           icon: 'none',
@@ -53,7 +55,8 @@ class Service {
       delete header.Authorization;
     }
 
-    console.log(opts);
+    uni.showLoading();
+    // console.log(opts);
     return new Promise((resolve, reject) => {
       uni.request({
         url: baseUrl + opts.url,
@@ -61,10 +64,11 @@ class Service {
         method: opts.menthod,
         header,
         success: (res) => {
+          uni.hideLoading();
           if (res.statusCode === 200) {
-            if (res.data) {
+            if (res.data.data) {
               resolve(res.data);
-            } else if (res.data.returnCode === '401') {
+            } else if (res.data.code == 28004) {
               uni.showModal({
                 title: '提示',
                 content: '登录过期，请重新登录',
@@ -73,20 +77,17 @@ class Service {
                     uni.redirectTo({
                       url: '/pages/login/index',
                     });
-
                     uni.clearStorageSync();
                   } else if (res.cancel) {
-                    uni.switchTab({
-                      url: '/pages/index/index',
-                    });
+                    console.log('用户不想登陆');
                   }
                 },
               });
               resolve(res.data);
             } else {
               uni.showToast({
-                title: res.data.returnMessage,
-                icon: 'none',
+                title: res.data.message,
+                icon: 'error',
                 duration: 1500,
               });
               reject(res.data);
@@ -94,11 +95,11 @@ class Service {
           }
         },
         fail: () => {
-          // uni.hideLoading();
+          uni.hideLoading();
           uni.showToast({
             title: 'net error!',
             icon: 'none',
-            duration: 1500,
+            duration: 2000,
           });
         },
       });
