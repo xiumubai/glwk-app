@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 18:41:51
+ * @LastEditTime: 2022-08-26 08:37:05
  * @Description: 
 -->
 <template>
@@ -75,9 +75,6 @@
                   />
                 </view>
               </view>
-            </uni-collapse-item>
-            <uni-collapse-item title="默认开启">
-              <view class="content"></view>
             </uni-collapse-item>
           </uni-collapse>
         </view>
@@ -243,9 +240,19 @@ export default {
   }
 
   .title {
+    display: flex;
+    align-items: center;
     font-size: 16px;
     color: #3c464f;
     padding: 16px 0;
+    &::before {
+      content: '';
+      width: 4px;
+      height: 12px;
+      border-radius: 10px;
+      margin-right: 6px;
+      background-color: #2979ff;
+    }
   }
   .intro {
     padding: 0 16px;
