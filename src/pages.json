@@ -47,6 +47,12 @@
       "style": {
         "navigationBarTitleText": "谷粒微课"
       }
+    },
+    {
+      "path": "pages/course/comment",
+      "style": {
+        "navigationBarTitleText": "谷粒微课"
+      }
     }
   ],
   "tabBar": {

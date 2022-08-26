@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 08:37:05
+ * @LastEditTime: 2022-08-26 10:53:39
  * @Description: 
 -->
 <template>
@@ -80,7 +80,22 @@
         </view>
       </view>
       <view class="comment" id="anchor2">
-        <view class="title"> 学员评价 </view>
+        <view class="title">
+          <view class="title_left"> 学员评价（{{ comment.total || 0 }}）</view>
+          <navigator url="/pages/course/comment" class="title_right">
+            查看全部<uni-icons
+              type="right"
+              color="#666c80"
+              size="12"
+            ></uni-icons>
+          </navigator>
+        </view>
+        <view class="comment_wrapper">
+          <v-comment :list="comment.items"></v-comment>
+          <navigator url="/pages/course/comment">
+            <uni-load-more status="more" :content-text="contentText" />
+          </navigator>
+        </view>
       </view>
     </view>
     <v-back-top></v-back-top>
@@ -89,6 +104,8 @@
 
 <script>
 import courseService from '@/services/course';
+import userService from '@/services/user';
+
 const tabList = [
   { index: 0, name: '介绍' },
   { index: 1, name: '目录' },
@@ -105,12 +122,16 @@ export default {
       courseDetail: {},
       tabList: Object.freeze(tabList),
 
+      // 锚点元素top值
       enchorParams: {
         enchorTop1: 0,
         enchorTop2: 0,
         enchorTop3: 0,
       },
-      query: {},
+      comment: {},
+      contentText: {
+        contentdown: '点击查看更多评论',
+      },
     };
   },
   onLoad(option) {
@@ -118,7 +139,7 @@ export default {
     /** 获取tab元素属性 */
     const query = uni.createSelectorQuery();
 
-    // 提前保存锚点元素的高度
+    // 提前保存锚点元素的top值
     query
       .select('#anchor0')
       .boundingClientRect((e) => {
@@ -140,16 +161,29 @@ export default {
       })
       .exec();
     this.getCourseDetail();
+    this.getCommeentList();
   },
   onPageScroll(e) {
     uni.$emit('onPageScroll', e);
   },
   methods: {
+    async getCommeentList() {
+      try {
+        const res = await userService.commentList({
+          page: 1,
+          limit: 10,
+        });
+        this.comment = res.data;
+        console.log('res', res);
+      } catch (e) {
+        console.log('e', e);
+      }
+    },
     async getCourseDetail() {
       try {
         const res = await courseService.courseDetail({
-          // id: this.options.id
-          id: '1192252213659774977',
+          id: this.options.id,
+          // id: '1192252213659774977',
         });
         this.chapterList = res.data.chapterList;
         this.course = res.data;
@@ -242,16 +276,23 @@ export default {
   .title {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-size: 16px;
     color: #3c464f;
     padding: 16px 0;
-    &::before {
-      content: '';
-      width: 4px;
-      height: 12px;
-      border-radius: 10px;
-      margin-right: 6px;
-      background-color: #2979ff;
+    .title_left {
+      &::before {
+        content: '';
+        width: 4px;
+        height: 12px;
+        border-radius: 10px;
+        margin-right: 6px;
+        background-color: #2979ff;
+      }
+    }
+    .title_right {
+      color: #666c80;
+      font-size: 12px;
     }
   }
   .intro {
@@ -342,6 +383,9 @@ export default {
   .comment {
     padding: 0 16px;
     background: #fff;
+
+    .comment_wrapper {
+    }
   }
 }
 </style>
