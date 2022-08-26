@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 09:35:39
+ * @LastEditTime: 2022-08-26 09:09:06
  * @Description:
  */
 import Service from '@/utils/http';
@@ -24,8 +24,23 @@ class Course extends Service {
     return this.get(options);
   }
   // 获取课程详情
-  courseDetail(options) {
+  courseDetail(options = {}) {
     options.url = `/api/edu/course/${options.id}`;
+    return this.get(options);
+  }
+  // 收藏课程
+  courseCollectSave(options = {}) {
+    options.url = `/api/edu/courseCollect/auth/save/${options.courseId}`;
+    return this.post(options);
+  }
+  // 取消收藏课程
+  courseCollectRemove(options = {}) {
+    options.url = `/api/edu/courseCollect/auth/remove/${options.courseId}`;
+    return this.delete(options);
+  }
+  // 收藏课程列表
+  courseCollectList(options = {}) {
+    options.url = `/api/edu/courseCollect/auth/${options.page}/${options.limit}`;
     return this.get(options);
   }
 }

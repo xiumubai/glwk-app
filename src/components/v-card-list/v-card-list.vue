@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 17:04:01
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 15:16:51
+ * @LastEditTime: 2022-08-26 09:35:07
  * @Description: 
 -->
 <template>
@@ -12,7 +12,14 @@
       v-for="(item, index) in list"
       :key="index"
     >
-      <navigator class="list_item_card">
+      <navigator
+        class="list_item_card"
+        :url="
+          type == 'course'
+            ? '/pages/course/detail?id=' + item.id
+            : '/pages/teacher/detail?id=' + item.id
+        "
+      >
         <view class="list_item_card_img">
           <image
             alt="封面"
