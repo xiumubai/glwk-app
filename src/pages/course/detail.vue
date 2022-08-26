@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 10:53:39
+ * @LastEditTime: 2022-08-26 11:04:51
  * @Description: 
 -->
 <template>
@@ -35,7 +35,10 @@
       </view>
       <view class="intro" id="anchor0">
         <view class="title"> 讲师介绍 </view>
-        <view class="teacher_info">
+        <navigator
+          :url="'/pages/teacher/detail?id=' + courseDetail.teacherId"
+          class="teacher_info"
+        >
           <view class="avatar">
             <image :src="courseDetail.avatar" />
           </view>
@@ -45,7 +48,7 @@
             >
             <view class="teacher_intro">{{ courseDetail.intro }}</view>
           </view>
-        </view>
+        </navigator>
         <view class="title"> 课程详情 </view>
         <view class="course_detail" v-html="courseDetail.description"> </view>
       </view>
