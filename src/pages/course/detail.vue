@@ -2,8 +2,8 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 15:00:30
- * @Description: 
+ * @LastEditTime: 2022-08-26 15:28:01
+ * @Description: 课程详情
 -->
 <template>
   <view class="container">
@@ -359,6 +359,7 @@ export default {
     padding: 0 16px;
     background: #fff;
     margin-bottom: 12px;
+    height: 1000px;
     .teacher_info {
       display: flex;
       align-items: center;
@@ -401,6 +402,7 @@ export default {
   }
 
   .catalogue {
+    height: 1000px;
     padding: 0 16px;
     background: #fff;
     margin-bottom: 12px;
@@ -441,11 +443,9 @@ export default {
     }
   }
   .comment {
+    height: 1000px;
     padding: 0 16px;
     background: #fff;
-
-    .comment_wrapper {
-    }
   }
 }
 .bottom_tabbar {

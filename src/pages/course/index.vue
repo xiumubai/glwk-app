@@ -2,8 +2,8 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 09:41:30
- * @Description: 
+ * @LastEditTime: 2022-08-26 15:28:18
+ * @Description: 课程列表
 -->
 <template>
   <div class="container">

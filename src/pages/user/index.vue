@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 16:09:58
+ * @LastEditTime: 2022-08-26 15:22:22
  * @Description: 
 -->
 <template>
@@ -16,13 +16,13 @@
         <view class="info_item">
           <navigator class="item_a info-link">
             <uni-icons type="shop-filled" size="24" color="#a1a7b2"></uni-icons>
-            <text class="item_dsc">订单管理</text>
+            <text class="item_dsc">我的订单</text>
           </navigator>
         </view>
         <view class="info_item">
           <navigator class="item_a info-link">
             <uni-icons type="vip-filled" size="24" color="#a1a7b2"></uni-icons>
-            <text class="item_dsc">我的学习</text>
+            <text class="item_dsc">我的收藏</text>
           </navigator>
         </view>
       </view>

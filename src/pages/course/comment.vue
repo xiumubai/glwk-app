@@ -2,8 +2,8 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 10:42:43
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 10:57:47
- * @Description: 
+ * @LastEditTime: 2022-08-26 15:27:50
+ * @Description: 评论列表
 -->
 <template>
   <view class="container comment">
