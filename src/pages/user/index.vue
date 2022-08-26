@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 15:22:22
+ * @LastEditTime: 2022-08-26 16:36:39
  * @Description: 
 -->
 <template>
@@ -14,13 +14,13 @@
       </h1>
       <view class="info_list">
         <view class="info_item">
-          <navigator class="item_a info-link">
+          <navigator class="item_a info-link" url="/pages/order/list">
             <uni-icons type="shop-filled" size="24" color="#a1a7b2"></uni-icons>
             <text class="item_dsc">我的订单</text>
           </navigator>
         </view>
         <view class="info_item">
-          <navigator class="item_a info-link">
+          <navigator class="item_a info-link" url="/pages/course/collect">
             <uni-icons type="vip-filled" size="24" color="#a1a7b2"></uni-icons>
             <text class="item_dsc">我的收藏</text>
           </navigator>
@@ -28,6 +28,9 @@
       </view>
     </view>
     <view class="list"></view>
+    <view class="logout dark-mode info-link" @click="handleLogout"
+      >退出登陆</view
+    >
   </view>
 </template>
 
@@ -38,6 +41,7 @@ export default {
       title: 'Hello',
       isLogin: false,
       user: {},
+      show: false,
     };
   },
   onLoad() {
@@ -49,7 +53,25 @@ export default {
       });
     }
   },
-  methods: {},
+  methods: {
+    handleLogout() {
+      uni.showModal({
+        title: '退出登陆',
+        content: '点击确定退出登陆',
+        success: function (res) {
+          if (res.confirm) {
+            // 退出登陆
+            console.log('用户点击确定');
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        },
+      });
+    },
+    change(e) {
+      this.show = e.show;
+    },
+  },
 };
 </script>
 
@@ -89,5 +111,18 @@ export default {
       }
     }
   }
+}
+
+.logout {
+  height: 52px;
+  line-height: 52px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.popup_height {
+  height: 100px;
+  width: 100%;
+  background: #fff;
 }
 </style>
