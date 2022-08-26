@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 12:02:28
+ * @LastEditTime: 2022-08-26 13:53:55
  * @Description: 
 -->
 <template>
@@ -111,7 +111,7 @@
           </view>
         </view>
         <view class="bottom_main">
-          <view class="buy_button"> 点击购买 </view>
+          <view class="buy_button" @click="hangleBuy"> 点击购买 </view>
         </view>
       </view>
     </view>
@@ -209,11 +209,42 @@ export default {
         console.log('e', e);
       }
     },
-    async clollectSave() {},
+    async collectSave() {
+      try {
+        const res = await courseService.courseCollectSave({
+          courseId: this.courseDetail.id,
+        });
+        if (res.code === 200) {
+          uni.showToast({
+            title: '添加收藏成功',
+            duration: 2000,
+          });
+        }
+      } catch (e) {
+        console.log('e', e);
+      }
+    },
+    async collectRemove() {
+      try {
+        const res = await courseService.courseCollectRemove({
+          courseId: this.courseDetail.id,
+        });
+        if (res.code === 200) {
+          uni.showToast({
+            title: '取消收藏成功',
+            duration: 2000,
+          });
+        }
+      } catch (e) {
+        console.log('e', e);
+      }
+    },
     handleFavo() {
       this.isCollect = !this.isCollect;
       if (!this.isCollect) {
+        this.collectSave();
       } else {
+        this.collectRemove();
       }
     },
     clickTab(index) {
