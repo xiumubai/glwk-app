@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 16:59:43
+ * @LastEditTime: 2022-08-26 17:06:59
  * @Description: 课程收藏列表页
 -->
 <template>
@@ -47,17 +47,17 @@ export default {
     };
   },
   onLoad() {
-    this.getOrderList();
+    this.getCollectList();
   },
   onReachBottom() {
     if (this.status !== 'noMore') {
       this.status = 'loading';
       this.params.page++;
-      this.getOrderList();
+      this.getCollectList();
     }
   },
   methods: {
-    async getOrderList() {
+    async getCollectList() {
       try {
         const res = await courseService.courseCollectList({
           ...this.params,
