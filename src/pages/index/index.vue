@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 10:30:29
+ * @LastEditTime: 2022-08-27 11:58:32
  * @Description: 
 -->
 <template>
@@ -126,7 +126,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url('@/static/styles/_global.scss');
+@import '@/static/styles/_global.scss';
+@import '@/static/styles/_uni-defult.scss';
 .home {
   padding-top: 56px;
 }
@@ -135,6 +136,7 @@ export default {
   top: 0;
   width: 100%;
   z-index: 999;
+  background: #1f2228;
 }
 .swiper_box {
   width: 100%;

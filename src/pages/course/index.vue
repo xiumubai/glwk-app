@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 10:30:40
+ * @LastEditTime: 2022-08-27 11:38:23
  * @Description: 课程列表
 -->
 <template>
@@ -93,7 +93,7 @@ export default {
 
 <style scoped lang="scss">
 @import url('@/static/styles/_global.scss');
-
+@import '@/static/styles/_uni-defult.scss';
 .course {
   padding-top: 56px;
 }
@@ -102,6 +102,7 @@ export default {
   top: 0;
   width: 100%;
   z-index: 999;
+  background: #1f2228;
 }
 
 .course_list {

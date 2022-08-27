@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 16:35:41
+ * @LastEditTime: 2022-08-27 10:33:56
  * @Description:
  */
 import Service from '@/utils/http';
@@ -13,7 +13,7 @@ class User extends Service {
     return this.post(options);
   }
   // 添加评论
-  comment(options = {}) {
+  commentAdd(options = {}) {
     options.url = '/api/edu/comment/auth/save';
     return this.post(options);
   }

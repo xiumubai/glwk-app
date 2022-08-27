@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 09:09:06
+ * @LastEditTime: 2022-08-27 11:59:31
  * @Description:
  */
 import Service from '@/utils/http';
@@ -11,7 +11,7 @@ class Course extends Service {
   // 获取首页热门课程和名师大咖
   indexCourse(options = {}) {
     options.url = '/api/edu/index';
-    return this.post(options);
+    return this.get(options);
   }
   // 获取首页banner图
   banner(options = {}) {

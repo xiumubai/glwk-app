@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 15:28:01
+ * @LastEditTime: 2022-08-27 11:55:00
  * @Description: 课程详情
 -->
 <template>
@@ -85,7 +85,10 @@
       <view class="comment" id="anchor2">
         <view class="title">
           <view class="title_left"> 学员评价（{{ comment.total || 0 }}）</view>
-          <navigator url="/pages/course/comment" class="title_right">
+          <navigator
+            :url="`/pages/course/comment?courseId=` + options.id"
+            class="title_right"
+          >
             查看全部<uni-icons
               type="right"
               color="#666c80"
@@ -95,7 +98,7 @@
         </view>
         <view class="comment_wrapper">
           <v-comment :list="comment.items"></v-comment>
-          <navigator url="/pages/course/comment">
+          <navigator :url="`/pages/course/comment?courseId=` + options.id">
             <uni-load-more status="more" :content-text="contentText" />
           </navigator>
         </view>
@@ -191,6 +194,7 @@ export default {
         const res = await userService.commentList({
           page: 1,
           limit: 10,
+          courseId: this.options.id,
         });
         this.comment = res.data;
         console.log('res', res);
@@ -222,6 +226,7 @@ export default {
             title: '添加收藏成功',
             duration: 2000,
           });
+          this.isCollect = true;
         }
       } catch (e) {
         console.log('e', e);
@@ -237,6 +242,7 @@ export default {
             title: '取消收藏成功',
             duration: 2000,
           });
+          this.isCollect = false;
         }
       } catch (e) {
         console.log('e', e);
@@ -244,7 +250,6 @@ export default {
     },
     handleBuy() {},
     handleFavo() {
-      this.isCollect = !this.isCollect;
       if (!this.isCollect) {
         this.collectSave();
       } else {
