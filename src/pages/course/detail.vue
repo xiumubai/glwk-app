@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 11:55:00
+ * @LastEditTime: 2022-08-27 14:37:52
  * @Description: 课程详情
 -->
 <template>
@@ -66,6 +66,7 @@
                   class="task_items"
                   v-for="child in item.children"
                   :key="child.id"
+                  @click="handleLink(child.videoSourceId)"
                 >
                   <image
                     class="task_type"
@@ -86,7 +87,7 @@
         <view class="title">
           <view class="title_left"> 学员评价（{{ comment.total || 0 }}）</view>
           <navigator
-            :url="`/pages/course/comment?courseId=` + options.id"
+            :url="`/pages/course/comment?courseId=${options.id}&teacherId=${courseDetail.teacherId}`"
             class="title_right"
           >
             查看全部<uni-icons
@@ -98,7 +99,9 @@
         </view>
         <view class="comment_wrapper">
           <v-comment :list="comment.items"></v-comment>
-          <navigator :url="`/pages/course/comment?courseId=` + options.id">
+          <navigator
+            :url="`/pages/course/comment?courseId=${options.id}&teacherId=${courseDetail.teacherId}`"
+          >
             <uni-load-more status="more" :content-text="contentText" />
           </navigator>
         </view>
@@ -248,7 +251,17 @@ export default {
         console.log('e', e);
       }
     },
-    handleBuy() {},
+    handleLink(videoSourceId) {
+      // 点击播放
+      // 跳转之前判断该课程是否已经购买，是否已经登陆账户
+      uni.navigateTo({
+        url: `/pages/video/index?id=${this.options.id}&videoSourceId=${videoSourceId}`,
+      });
+    },
+    handleBuy() {
+      // 点击购买
+      // 判断是否登陆，是否已经购买，已经购买了，按钮显示去学习
+    },
     handleFavo() {
       if (!this.isCollect) {
         this.collectSave();

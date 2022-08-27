@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 10:42:43
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 11:50:02
+ * @LastEditTime: 2022-08-27 14:30:51
  * @Description: 评论列表
 -->
 <template>
@@ -79,8 +79,10 @@ export default {
     async commentAdd() {
       try {
         const res = await userService.commentAdd({
-          content: this.content,
-          ...this.options,
+          data: {
+            content: this.content,
+            ...this.options,
+          },
         });
 
         if (res.message == '成功') {
@@ -88,6 +90,10 @@ export default {
             title: '评论发送成功',
           });
           this.content = '';
+        } else {
+          uni.showToast({
+            title: '评论发送失败',
+          });
         }
       } catch (e) {
         console.log('e', e);
