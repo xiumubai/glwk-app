@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:47:09
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 17:54:37
+ * @LastEditTime: 2022-08-27 11:51:18
  * @Description:
  */
 import store from '@/store/index';
@@ -61,7 +61,7 @@ class Service {
       uni.request({
         url: baseUrl + opts.url,
         data: opts.data,
-        method: opts.menthod,
+        method: opts.method,
         header,
         success: (res) => {
           uni.hideLoading();
