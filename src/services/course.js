@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 11:59:31
+ * @LastEditTime: 2022-08-27 14:55:39
  * @Description:
  */
 import Service from '@/utils/http';
@@ -41,6 +41,11 @@ class Course extends Service {
   // 收藏课程列表
   courseCollectList(options = {}) {
     options.url = `/api/edu/courseCollect/auth/${options.page}/${options.limit}`;
+    return this.get(options);
+  }
+  // 获取视频地址
+  getVideoSource(options = {}) {
+    options.url = `/api/vod/video/getPlayAuth/${options.videoSourceId}`;
     return this.get(options);
   }
 }

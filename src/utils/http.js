@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:47:09
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 11:51:18
+ * @LastEditTime: 2022-08-27 14:27:58
  * @Description:
  */
 import store from '@/store/index';
@@ -56,7 +56,7 @@ class Service {
     }
 
     uni.showLoading();
-    // console.log(opts);
+    console.log(opts);
     return new Promise((resolve, reject) => {
       uni.request({
         url: baseUrl + opts.url,
