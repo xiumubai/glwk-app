@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-27 13:56:46
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 14:55:47
+ * @LastEditTime: 2022-08-27 15:02:03
  * @Description: 
 -->
 <template>
@@ -94,7 +94,14 @@ export default {
         });
         console.log('res', res);
 
-        this.viedeo = res.data;
+        if (res.code == 200) {
+          this.viedeo = res.data;
+        } else {
+          uni.showToast({
+            title: res.message,
+            icon: 'error',
+          });
+        }
       } catch (e) {
         console.log('e', e);
       }

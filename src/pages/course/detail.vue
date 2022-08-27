@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 14:37:52
+ * @LastEditTime: 2022-08-27 15:11:12
  * @Description: 课程详情
 -->
 <template>
@@ -252,17 +252,19 @@ export default {
       }
     },
     handleLink(videoSourceId) {
-      // 点击播放
+      this.$store.dispatch('goLogin');
       // 跳转之前判断该课程是否已经购买，是否已经登陆账户
       uni.navigateTo({
         url: `/pages/video/index?id=${this.options.id}&videoSourceId=${videoSourceId}`,
       });
     },
     handleBuy() {
+      this.$store.dispatch('goLogin');
       // 点击购买
       // 判断是否登陆，是否已经购买，已经购买了，按钮显示去学习
     },
     handleFavo() {
+      this.$store.dispatch('goLogin');
       if (!this.isCollect) {
         this.collectSave();
       } else {
