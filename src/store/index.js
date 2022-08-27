@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:34:58
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 15:55:49
+ * @LastEditTime: 2022-08-27 18:11:59
  * @Description:
  */
 import Vue from 'vue';
@@ -27,9 +27,21 @@ const store = new Vuex.Store({
     },
   },
   actions: {
+    /**
+     * @description: 设置用户信息参数
+     * @param {*} commit
+     * @param {*} payload
+     * @return {*}
+     */
     setUser({ commit }, payload) {
       commit('setUser', payload);
     },
+    /**
+     * @description: 判断是否需要跳转登陆
+     * @param {*} context
+     * @param {*} callBack 不需要登陆的回掉函数
+     * @return {*}
+     */
     goLogin(context, callBack) {
       if (!this.state.token) {
         uni.showModal({

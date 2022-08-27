@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 18:04:56
+ * @LastEditTime: 2022-08-27 18:10:32
  * @Description: 课程详情
 -->
 <template>
@@ -140,21 +140,27 @@ const tabList = [
 export default {
   data() {
     return {
+      /** url参数 */
       options: {},
       /** 章节列表 */
       chapterList: [],
-      /** 课程详情 */
+      /** 课程详情-data */
       course: {},
+      /** 课程详情-course */
       courseDetail: {},
+      /** tab选项 */
       tabList: Object.freeze(tabList),
+      /** 是否收藏 */
       isCollect: false,
-      // 锚点元素top值
+      /** 锚点元素top值  */
       enchorParams: {
         enchorTop1: 0,
         enchorTop2: 0,
         enchorTop3: 0,
       },
+      /** 展示前10条评论 */
       comment: {},
+      /** 查看更多 */
       contentText: {
         contentdown: '点击查看更多评论',
       },
@@ -195,6 +201,10 @@ export default {
     uni.$emit('onPageScroll', e);
   },
   methods: {
+    /**
+     * @description: 获取评论列表
+     * @return {*}
+     */
     async getCommentList() {
       try {
         const res = await userService.commentList({
@@ -208,6 +218,10 @@ export default {
         console.log('e', e);
       }
     },
+    /**
+     * @description: 获取课程详情
+     * @return {*}
+     */
     async getCourseDetail() {
       try {
         const res = await courseService.courseDetail({
@@ -222,6 +236,10 @@ export default {
         console.log('e', e);
       }
     },
+    /**
+     * @description: 收藏
+     * @return {*}
+     */
     async collectSave() {
       try {
         const res = await courseService.courseCollectSave({
@@ -238,6 +256,10 @@ export default {
         console.log('e', e);
       }
     },
+    /**
+     * @description: 取消收藏
+     * @return {*}
+     */
     async collectRemove() {
       try {
         const res = await courseService.courseCollectRemove({
@@ -254,6 +276,10 @@ export default {
         console.log('e', e);
       }
     },
+    /**
+     * @description: 跳转到视频播放
+     * @return {*}
+     */
     handleLink(videoSourceId) {
       // 跳转之前判断该课程是否已经购买，是否已经登陆账户
       this.$store.dispatch('goLogin', () => {
@@ -269,6 +295,10 @@ export default {
         }
       });
     },
+    /**
+     * @description: 点击购买｜去学习按钮
+     * @return {*}
+     */
     handleBuy() {
       this.$store.dispatch('goLogin', () => {
         // 点击购买
@@ -284,6 +314,10 @@ export default {
         }
       });
     },
+    /**
+     * @description: 点击收藏按钮
+     * @return {*}
+     */
     handleFavo() {
       this.$store.dispatch('goLogin', () => {
         if (!this.isCollect) {
@@ -293,6 +327,10 @@ export default {
         }
       });
     },
+    /**
+     * @description: 切换tab栏，使用锚点定位
+     * @return {*}
+     */
     clickTab(index) {
       // 点击tab的时候触发
       const _this = this;
