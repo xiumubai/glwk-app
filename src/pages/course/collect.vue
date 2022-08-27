@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 17:06:59
+ * @LastEditTime: 2022-08-27 17:39:41
  * @Description: 课程收藏列表页
 -->
 <template>
@@ -20,7 +20,7 @@
             <h3 class="content_title">{{ item.title }}</h3>
             <view class="content_price">
               <view class="price">¥{{ item.price }}</view>
-              <view class="buy_num">{{ item.buyCount }}人已购买</view>
+              <view class="buy_num">{{ item.lessonNum }}人已学习</view>
             </view>
           </view>
         </navigator>

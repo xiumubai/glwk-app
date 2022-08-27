@@ -2,17 +2,14 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 17:29:28
+ * @LastEditTime: 2022-08-27 17:44:58
  * @Description: 订单列表页面
 -->
 <template>
   <view class="container">
     <view class="course_list">
       <view class="course_list_item" v-for="item in list" :key="item.id">
-        <navigator
-          class="course_list_item_a"
-          :url="'/pages/course/detail?id=' + item.courseId"
-        >
+        <navigator class="course_list_item_a" @click="handleLink(item)">
           <view class="item_cover">
             <image :src="item.courseCover" />
           </view>
@@ -77,6 +74,17 @@ export default {
         if (items.length >= 10) this.status = 'more';
       } catch (e) {
         console.log('e', e);
+      }
+    },
+    handlelink(item) {
+      if (item.status == 0) {
+        uni.navigateTo({
+          url: `/pages/order/index?courseId=${item.courseId}`,
+        });
+      } else {
+        uni.navigateTo({
+          url: `/pages/course/detail?id=${item.courseId}`,
+        });
       }
     },
   },

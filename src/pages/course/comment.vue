@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 10:42:43
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 15:02:40
+ * @LastEditTime: 2022-08-27 18:00:33
  * @Description: 评论列表
 -->
 <template>
@@ -22,7 +22,7 @@
 
     <view class="comment_bar">
       <uni-search-bar
-        @confirm="commentAdd"
+        @confirm="handleComment"
         placeholder="点击这里可以添加评论"
         v-model="content"
         bgColor="#EEEEEE"
@@ -76,6 +76,10 @@ export default {
         console.log('e', e);
       }
     },
+    /**
+     * @description: 发表评论-判断登陆状态
+     * @return {*}
+     */
     async commentAdd() {
       try {
         const res = await userService.commentAdd({
@@ -99,6 +103,11 @@ export default {
       } catch (e) {
         console.log('e', e);
       }
+    },
+    handleComment() {
+      this.$store.dispatch('goLogin', () => {
+        this.commentAdd();
+      });
     },
   },
 };

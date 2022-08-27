@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 16:22:56
+ * @LastEditTime: 2022-08-27 18:04:56
  * @Description: 课程详情
 -->
 <template>
@@ -74,6 +74,7 @@
                   />
                   <view class="task_title">{{ child.title }}</view>
                   <image
+                    v-show="!course.isBuy"
                     class="task_icon"
                     src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/064fdd1eb99fcb8bef80085f2b548e4b.png"
                   />
@@ -118,7 +119,9 @@
           </view>
         </view>
         <view class="bottom_main">
-          <view class="buy_button" @click="handleBuy">点击购买</view>
+          <view class="buy_button" @click="handleBuy">
+            {{ course.isBuy ? '去学习' : '点击购买' }}
+          </view>
         </view>
       </view>
     </view>
@@ -254,18 +257,31 @@ export default {
     handleLink(videoSourceId) {
       // 跳转之前判断该课程是否已经购买，是否已经登陆账户
       this.$store.dispatch('goLogin', () => {
-        uni.navigateTo({
-          url: `/pages/video/index?id=${this.options.id}&videoSourceId=${videoSourceId}`,
-        });
+        if (this.course.isBuy) {
+          uni.navigateTo({
+            url: `/pages/video/index?id=${this.options.id}&videoSourceId=${videoSourceId}`,
+          });
+        } else {
+          uni.showToast({
+            title: '请先购买课程',
+            icon: 'none',
+          });
+        }
       });
     },
     handleBuy() {
       this.$store.dispatch('goLogin', () => {
         // 点击购买
         // 判断是否登陆，是否已经购买，已经购买了，按钮显示去学习
-        uni.navigateTo({
-          url: `/pages/order/index?courseId=${this.courseDetail.id}`,
-        });
+        if (this.course.isBuy) {
+          uni.navigateTo({
+            url: `/pages/video/index?id=${this.options.id}&videoSourceId=''`,
+          });
+        } else {
+          uni.navigateTo({
+            url: `/pages/order/index?courseId=${this.courseDetail.id}`,
+          });
+        }
       });
     },
     handleFavo() {
