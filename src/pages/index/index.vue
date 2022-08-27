@@ -2,13 +2,13 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 16:48:09
+ * @LastEditTime: 2022-08-27 10:30:29
  * @Description: 
 -->
 <template>
-  <view class="container">
+  <view class="container home">
     <!-- 搜索框 -->
-    <v-search-bar @focus="focus"></v-search-bar>
+    <v-search-bar @focus="focus" class="header"></v-search-bar>
     <!-- 轮播图 -->
     <view class="swiper_box">
       <swiper
@@ -127,7 +127,15 @@ export default {
 
 <style scoped lang="scss">
 @import url('@/static/styles/_global.scss');
-
+.home {
+  padding-top: 56px;
+}
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
 .swiper_box {
   width: 100%;
 

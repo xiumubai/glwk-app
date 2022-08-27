@@ -2,12 +2,12 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 15:28:18
+ * @LastEditTime: 2022-08-27 10:30:40
  * @Description: 课程列表
 -->
 <template>
-  <div class="container">
-    <v-search-bar @search="search"></v-search-bar>
+  <div class="container course">
+    <v-search-bar @search="search" class="header"></v-search-bar>
     <view class="filter"></view>
     <view class="course_list">
       <view class="course_list_item" v-for="item in list" :key="item.id">
@@ -93,6 +93,16 @@ export default {
 
 <style scoped lang="scss">
 @import url('@/static/styles/_global.scss');
+
+.course {
+  padding-top: 56px;
+}
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
 
 .course_list {
   background: #000;
