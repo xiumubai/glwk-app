@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:34:58
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 15:13:01
+ * @LastEditTime: 2022-08-27 15:55:49
  * @Description:
  */
 import Vue from 'vue';
@@ -30,7 +30,7 @@ const store = new Vuex.Store({
     setUser({ commit }, payload) {
       commit('setUser', payload);
     },
-    goLogin() {
+    goLogin(context, callBack) {
       if (!this.state.token) {
         uni.showModal({
           title: '提示',
@@ -46,6 +46,8 @@ const store = new Vuex.Store({
             }
           },
         });
+      } else {
+        callBack();
       }
     },
   },
