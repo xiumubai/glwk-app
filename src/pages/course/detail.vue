@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 15:11:12
+ * @LastEditTime: 2022-08-27 16:22:56
  * @Description: 课程详情
 -->
 <template>
@@ -118,7 +118,7 @@
           </view>
         </view>
         <view class="bottom_main">
-          <view class="buy_button" @click="hangleBuy"> 点击购买 </view>
+          <view class="buy_button" @click="handleBuy">点击购买</view>
         </view>
       </view>
     </view>
@@ -252,24 +252,30 @@ export default {
       }
     },
     handleLink(videoSourceId) {
-      this.$store.dispatch('goLogin');
       // 跳转之前判断该课程是否已经购买，是否已经登陆账户
-      uni.navigateTo({
-        url: `/pages/video/index?id=${this.options.id}&videoSourceId=${videoSourceId}`,
+      this.$store.dispatch('goLogin', () => {
+        uni.navigateTo({
+          url: `/pages/video/index?id=${this.options.id}&videoSourceId=${videoSourceId}`,
+        });
       });
     },
     handleBuy() {
-      this.$store.dispatch('goLogin');
-      // 点击购买
-      // 判断是否登陆，是否已经购买，已经购买了，按钮显示去学习
+      this.$store.dispatch('goLogin', () => {
+        // 点击购买
+        // 判断是否登陆，是否已经购买，已经购买了，按钮显示去学习
+        uni.navigateTo({
+          url: `/pages/order/index?courseId=${this.courseDetail.id}`,
+        });
+      });
     },
     handleFavo() {
-      this.$store.dispatch('goLogin');
-      if (!this.isCollect) {
-        this.collectSave();
-      } else {
-        this.collectRemove();
-      }
+      this.$store.dispatch('goLogin', () => {
+        if (!this.isCollect) {
+          this.collectSave();
+        } else {
+          this.collectRemove();
+        }
+      });
     },
     clickTab(index) {
       // 点击tab的时候触发
