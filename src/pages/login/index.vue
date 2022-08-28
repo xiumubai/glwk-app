@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 18:17:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-22 16:06:04
+ * @LastEditTime: 2022-08-28 11:19:07
  * @Description: 
 -->
 <template>
@@ -10,12 +10,12 @@
     <view class="login_content">
       <view class="login_logo"></view>
       <view class="login_main_type">
-        <button class="login_main_type_item" @click="handleLogin">
+        <!-- <button class="login_main_type_item" @click="handleLogin">
           <image
             src="https://7.idqqimg.com/edu/mobilev2/m-core/15ed8902614ba6ac08b25fd9039e532a.png"
           />
           <text>QQ登陆</text>
-        </button>
+        </button> -->
         <button class="login_main_type_item" @click="handleLogin('weixin')">
           <image
             src="https://7.idqqimg.com/edu/mobilev2/m-core/a1447893821a2003463b10e7c9b39926.png"
@@ -23,7 +23,7 @@
           <text>微信登陆</text>
         </button>
       </view>
-      <view class="login_more" @click="handleLogin('other')">更多登录方式</view>
+      <!-- <view class="login_more" @click="handleLogin('other')">更多登录方式</view> -->
     </view>
     <view class="login_footer">
       <view class="login_protocol">
