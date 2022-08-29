@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 18:17:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-28 11:19:07
+ * @LastEditTime: 2022-08-29 18:59:05
  * @Description: 
 -->
 <template>
@@ -101,7 +101,8 @@ export default {
           // 登陆成功，保存token，返回个人页面
           this.$store.dispatch('setUser', {
             ...res.userInfo,
-            token: 'sdhfljasdhjfahffuffew',
+            token:
+              'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndWxpLXVzZXIiLCJpYXQiOjE2NjE0OTQ5OTQsImV4cCI6MTY2Mjk2NjIyMywiaWQiOiIxIiwibmlja25hbWUiOiLlvKDlsI8ifQ.IVkvP_NJmoDGaTmEbRYZKt80ybOA7g795ku1ZmdwQsI',
           });
 
           uni.showToast({

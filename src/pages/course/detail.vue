@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 18:10:32
+ * @LastEditTime: 2022-08-29 19:06:13
  * @Description: 课程详情
 -->
 <template>
@@ -66,7 +66,7 @@
                   class="task_items"
                   v-for="child in item.children"
                   :key="child.id"
-                  @click="handleLink(child.videoSourceId)"
+                  @click="handleJump(child.videoSourceId)"
                 >
                   <image
                     class="task_type"
@@ -280,7 +280,7 @@ export default {
      * @description: 跳转到视频播放
      * @return {*}
      */
-    handleLink(videoSourceId) {
+    handleJump(videoSourceId) {
       // 跳转之前判断该课程是否已经购买，是否已经登陆账户
       this.$store.dispatch('goLogin', () => {
         if (this.course.isBuy) {

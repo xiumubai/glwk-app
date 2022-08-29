@@ -2,14 +2,14 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 17:44:58
+ * @LastEditTime: 2022-08-29 19:05:46
  * @Description: 订单列表页面
 -->
 <template>
   <view class="container">
     <view class="course_list">
       <view class="course_list_item" v-for="item in list" :key="item.id">
-        <navigator class="course_list_item_a" @click="handleLink(item)">
+        <view class="course_list_item_a" @click="handleJump(item)">
           <view class="item_cover">
             <image :src="item.courseCover" />
           </view>
@@ -26,7 +26,7 @@
             </view>
             <view class="buy_num">订单编号{{ item.orderNo }}</view>
           </view>
-        </navigator>
+        </view>
       </view>
       <!-- 加载更多 -->
       <view class="load_more">
@@ -76,7 +76,7 @@ export default {
         console.log('e', e);
       }
     },
-    handlelink(item) {
+    handleJump(item) {
       if (item.status == 0) {
         uni.navigateTo({
           url: `/pages/order/index?courseId=${item.courseId}`,

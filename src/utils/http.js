@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:47:09
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 14:27:58
+ * @LastEditTime: 2022-08-29 18:55:16
  * @Description:
  */
 import store from '@/store/index';
@@ -64,9 +64,11 @@ class Service {
         method: opts.method,
         header,
         success: (res) => {
+          console.log('res', res);
+
           uni.hideLoading();
           if (res.statusCode === 200) {
-            if (res.data.data) {
+            if (res.data.code == 200) {
               resolve(res.data);
             } else if (res.data.code == 28004) {
               uni.showModal({
