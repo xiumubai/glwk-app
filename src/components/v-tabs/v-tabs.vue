@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-24 11:23:58
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 15:13:44
+ * @LastEditTime: 2022-08-30 16:24:07
  * @Description: 
 -->
 <template>
@@ -65,7 +65,7 @@ export default {
   justify-content: space-around;
   .tabs_item {
     position: relative;
-    width: 100%;
+    // width: 100%;
     text-align: center;
     color: #666c80;
     font-size: 12px;
