@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-30 16:03:41
+ * @LastEditTime: 2022-08-30 16:25:26
  * @Description: 课程详情
 -->
 <template>
@@ -355,7 +355,7 @@ export default {
       // 锚点定位，滚动到对应的位置
       uni.pageScrollTo({
         duration: 500,
-        scrollTop: top - 56,
+        scrollTop: top - 58,
       });
     },
   },
