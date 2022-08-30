@@ -2,11 +2,12 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-29 19:06:13
+ * @LastEditTime: 2022-08-30 16:03:41
  * @Description: 课程详情
 -->
 <template>
   <view class="container">
+    <!-- 课程内容 -->
     <view class="course">
       <view class="banner">
         <image :src="courseDetail.cover" />
@@ -16,15 +17,17 @@
         <view class="price">
           <h3>
             <text>¥</text>
-            {{ courseDetail.price }}
+            {{ courseDetail.price || 0 }}
           </h3>
-          <view class="buy_count">已有{{ courseDetail.buyCount }}人购买</view>
+          <view class="buy_count"
+            >已有{{ courseDetail.buyCount || 0 }}人购买</view
+          >
         </view>
         <h3 class="name">
-          {{ courseDetail.title }}
+          {{ courseDetail.title || '' }}
         </h3>
         <view class="tag_list">
-          <view class="tag_item">{{ courseDetail.subjectLevelTwo }}</view>
+          <view class="tag_item">{{ courseDetail.subjectLevelTwo || '' }}</view>
         </view>
       </view>
 
@@ -33,83 +36,88 @@
           <v-tabs :tabList="tabList" @click-tab="clickTab"></v-tabs>
         </v-sticky>
       </view>
-      <view class="intro" id="anchor0">
-        <view class="title"> 讲师介绍 </view>
-        <navigator
-          :url="'/pages/teacher/detail?id=' + courseDetail.teacherId"
-          class="teacher_info"
-        >
-          <view class="avatar">
-            <image :src="courseDetail.avatar" />
-          </view>
-          <view class="teacher_desc">
-            <view class="teacher_name"
-              >高级讲师-{{ courseDetail.teacherName }}</view
-            >
-            <view class="teacher_intro">{{ courseDetail.intro }}</view>
-          </view>
-        </navigator>
-        <view class="title"> 课程详情 </view>
-        <view class="course_detail" v-html="courseDetail.description"> </view>
-      </view>
-      <view class="catalogue" id="anchor1">
-        <view class="title"> 课程目录 </view>
-        <view class="catalogue_list">
-          <uni-collapse ref="collapse">
-            <uni-collapse-item
-              :title="item.title"
-              v-for="item in chapterList"
-              :key="item.id"
-            >
-              <view class="task_list">
-                <view
-                  class="task_items"
-                  v-for="child in item.children"
-                  :key="child.id"
-                  @click="handleJump(child.videoSourceId)"
-                >
-                  <image
-                    class="task_type"
-                    src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/f1c59a1527e075f6ebfba3d7ac605f07.png"
-                  />
-                  <view class="task_title">{{ child.title }}</view>
-                  <image
-                    v-show="!course.isBuy"
-                    class="task_icon"
-                    src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/064fdd1eb99fcb8bef80085f2b548e4b.png"
-                  />
+      <view class="course_card">
+        <view class="intro card" id="anchor0">
+          <view class="title"> 讲师介绍 </view>
+          <navigator
+            :url="'/pages/teacher/detail?id=' + courseDetail.teacherId"
+            class="teacher_info"
+          >
+            <view class="avatar">
+              <image :src="courseDetail.avatar" />
+            </view>
+            <view class="teacher_desc">
+              <view class="teacher_name"
+                >高级讲师-{{ courseDetail.teacherName || '' }}</view
+              >
+              <view class="teacher_intro">{{ courseDetail.intro || '' }}</view>
+            </view>
+          </navigator>
+          <view class="title"> 课程详情 </view>
+          <view class="course_detail" v-html="courseDetail.description"> </view>
+        </view>
+        <view class="catalogue card" id="anchor1">
+          <view class="title"> 课程目录 </view>
+          <view class="catalogue_list">
+            <uni-collapse ref="collapse">
+              <uni-collapse-item
+                :title="item.title"
+                v-for="item in chapterList"
+                :key="item.id"
+              >
+                <view class="task_list">
+                  <view
+                    class="task_items"
+                    v-for="child in item.children"
+                    :key="child.id"
+                    @click="handleJump(child.videoSourceId)"
+                  >
+                    <image
+                      class="task_type"
+                      src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/f1c59a1527e075f6ebfba3d7ac605f07.png"
+                    />
+                    <view class="task_title">{{ child.title }}</view>
+                    <image
+                      v-show="!course.isBuy"
+                      class="task_icon"
+                      src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/064fdd1eb99fcb8bef80085f2b548e4b.png"
+                    />
+                  </view>
                 </view>
-              </view>
-            </uni-collapse-item>
-          </uni-collapse>
+              </uni-collapse-item>
+            </uni-collapse>
+          </view>
         </view>
-      </view>
-      <view class="comment" id="anchor2">
-        <view class="title">
-          <view class="title_left"> 学员评价（{{ comment.total || 0 }}）</view>
-          <navigator
-            :url="`/pages/course/comment?courseId=${options.id}&teacherId=${courseDetail.teacherId}`"
-            class="title_right"
-          >
-            查看全部<uni-icons
-              type="right"
-              color="#666c80"
-              size="12"
-            ></uni-icons>
-          </navigator>
-        </view>
-        <view class="comment_wrapper">
-          <v-comment :list="comment.items"></v-comment>
-          <navigator
-            :url="`/pages/course/comment?courseId=${options.id}&teacherId=${courseDetail.teacherId}`"
-          >
-            <uni-load-more status="more" :content-text="contentText" />
-          </navigator>
+        <view class="comment card" id="anchor2">
+          <view class="title">
+            <view class="title_left">
+              学员评价（{{ comment.total || 0 }}）</view
+            >
+            <navigator
+              :url="`/pages/course/comment?courseId=${options.id}&teacherId=${courseDetail.teacherId}`"
+              class="title_right"
+            >
+              查看全部<uni-icons
+                type="right"
+                color="#666c80"
+                size="12"
+              ></uni-icons>
+            </navigator>
+          </view>
+          <view class="comment_wrapper">
+            <v-comment :list="comment.items"></v-comment>
+            <navigator
+              :url="`/pages/course/comment?courseId=${options.id}&teacherId=${courseDetail.teacherId}`"
+            >
+              <uni-load-more status="more" :content-text="contentText" />
+            </navigator>
+          </view>
         </view>
       </view>
     </view>
-
-    <v-back-top></v-back-top>
+    <!-- 返回顶部 -->
+    <v-back-top bottom="65"></v-back-top>
+    <!-- 底部购买 -->
     <view class="bottom_tabbar">
       <view class="bottom_wrap">
         <view class="bottom_button">
@@ -166,34 +174,9 @@ export default {
       },
     };
   },
+  mounted() {},
   onLoad(option) {
     this.options = option;
-    /** 获取tab元素属性 */
-    const query = uni.createSelectorQuery();
-
-    // 提前保存锚点元素的top值
-    this.$nextTick(() => {
-      query
-        .select('#anchor0')
-        .boundingClientRect((e) => {
-          this.enchorParams.enchorTop1 = e.top;
-        })
-        .exec();
-      this.getCourseDetail();
-      query
-        .select('#anchor1')
-        .boundingClientRect((e) => {
-          this.enchorParams.enchorTop2 = e.top;
-        })
-        .exec();
-      this.getCourseDetail();
-      query
-        .select('#anchor2')
-        .boundingClientRect((e) => {
-          this.enchorParams.enchorTop3 = e.top;
-        })
-        .exec();
-    });
     this.getCourseDetail();
     this.getCommentList();
   },
@@ -201,6 +184,30 @@ export default {
     uni.$emit('onPageScroll', e);
   },
   methods: {
+    getTopValue() {
+      const _this = this;
+      // 提前保存锚点元素的top值
+      this.$nextTick(() => {
+        const query = uni.createSelectorQuery().in(_this);
+        query
+          .select('#anchor0')
+          .boundingClientRect((e) => {
+            console.log('e1', e);
+            this.enchorParams.enchorTop1 = e.top;
+          })
+          .select('#anchor1')
+          .boundingClientRect((e) => {
+            console.log('e2', e);
+            _this.enchorParams.enchorTop2 = e.top;
+          })
+          .select('#anchor2')
+          .boundingClientRect((e) => {
+            console.log('e2', e);
+            this.enchorParams.enchorTop3 = e.top;
+          })
+          .exec();
+      });
+    },
     /**
      * @description: 获取评论列表
      * @return {*}
@@ -213,7 +220,7 @@ export default {
           courseId: this.options.id,
         });
         this.comment = res.data;
-        console.log('res', res);
+        this.getTopValue();
       } catch (e) {
         console.log('e', e);
       }
@@ -343,10 +350,12 @@ export default {
         top = this.enchorParams.enchorTop3;
       }
 
+      console.log('top', this.enchorParams, top);
+
       // 锚点定位，滚动到对应的位置
       uni.pageScrollTo({
         duration: 500,
-        scrollTop: top,
+        scrollTop: top - 56,
       });
     },
   },
@@ -435,11 +444,19 @@ export default {
       font-size: 12px;
     }
   }
-  .intro {
+  .course_card {
+    display: flex;
+    flex-direction: column;
+  }
+  .card {
     padding: 0 16px;
     background: #fff;
     margin-bottom: 12px;
-    height: 1000px;
+    flex: 1;
+    // min-height: 1000px;
+    // height: 100vh;
+  }
+  .intro {
     .teacher_info {
       display: flex;
       align-items: center;
@@ -482,10 +499,6 @@ export default {
   }
 
   .catalogue {
-    height: 1000px;
-    padding: 0 16px;
-    background: #fff;
-    margin-bottom: 12px;
     .catalogue_list {
       .task_list {
         .task_items {
@@ -521,11 +534,6 @@ export default {
         }
       }
     }
-  }
-  .comment {
-    height: 1000px;
-    padding: 0 16px;
-    background: #fff;
   }
 }
 .bottom_tabbar {

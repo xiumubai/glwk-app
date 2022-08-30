@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-24 16:15:18
  * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-24 17:15:23
+ * @LastEditTime: 2022-08-30 15:34:56
  * @Description: 吸顶
 -->
 <template>
@@ -48,7 +48,7 @@ export default {
   mounted() {
     // 获取吸顶元素距离顶部的距离
     const _this = this;
-    console.log('id', this.sid);
+    // console.log('id', this.sid);
     // 在组件中查找元素需要添加.in(this)
     this.$nextTick(() => {
       const query = uni.createSelectorQuery().in(this);
