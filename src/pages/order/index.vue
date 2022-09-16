@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 16:16:06
+ * @LastEditTime: 2022-09-16 16:25:42
  * @Description: 订单支付页
 -->
 <template>
@@ -40,8 +40,9 @@
         ></view
       >
       <view class="check">
-        <checkbox :value="isChecked" style="transform: scale(0.7)" />
-        同意
+        <checkbox-group @change="handleBoxChagne">
+          <checkbox :value="isChecked" style="transform: scale(0.7)" /> 同意
+        </checkbox-group>
         <navigator class="'link" url=""> 《谷粒微课购买协议》 </navigator>
       </view>
     </view>
@@ -71,6 +72,9 @@ export default {
     this.addOrder();
   },
   methods: {
+    handleBoxChagne() {
+      this.isChecked = !this.isChecked;
+    },
     /**
      * @description: 创建订单
      * @returns {*}
@@ -108,6 +112,14 @@ export default {
      */
     async handleOrderPay() {
       const _this = this;
+
+      if (!this.isChecked) {
+        uni.showToast({
+          title: "请同意谷粒微课购买协议",
+          icon: "none",
+        });
+        return;
+      }
       try {
         const res = await orderService.orderPay({
           orderNo: this.orderDetail.orderNo,
