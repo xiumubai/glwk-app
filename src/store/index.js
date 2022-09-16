@@ -1,15 +1,15 @@
 /*
  * @Author: 朽木白
  * @Date: 2022-08-22 09:34:58
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 18:11:59
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 10:33:11
  * @Description:
  */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { TOKEN_KEY, USER_KEY } from '@/config/storage-key';
 Vue.use(Vuex);
-
+// 可测试token：eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndWxpLXVzZXIiLCJpYXQiOjE2NjE0OTQ5OTQsImV4cCI6MTY2Mjk2NjIyMywiaWQiOiIxIiwibmlja25hbWUiOiLlvKDlsI8ifQ.IVkvP_NJmoDGaTmEbRYZKt80ybOA7g795ku1ZmdwQsI
 const store = new Vuex.Store({
   state: {
     token:
@@ -62,6 +62,7 @@ const store = new Vuex.Store({
         callBack();
       }
     },
+
   },
   modules: {},
 });

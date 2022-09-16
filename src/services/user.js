@@ -1,8 +1,8 @@
 /*
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 16:37:11
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 10:35:53
  * @Description:
  */
 import Service from '@/utils/http';
@@ -13,8 +13,26 @@ class User extends Service {
    * @param {*} options
    * @return {*}
    */
-  login(options) {
-    options.url = '/login';
+  login(options = {}) {
+    options.url = `/api/ucenter/webChat/callback?code=${options.code}`;
+    return this.get(options);
+  }
+  /**
+   * @description: 获取用户信息
+   * @param {*} options
+   * @return {*}
+   */
+  getLoginInfo(options = {}) {
+    options.url = `/api/ucenter/member/auth/getLoginInfo?token=${options.token}`;
+    return this.get(options);
+  }
+  /**
+   * @description: 更新用户信息
+   * @param {*} options
+   * @return {*}
+   */
+  updateMember(options = {}) {
+    options.url = `/api/ucenter/member/auth/updateMember`;
     return this.post(options);
   }
   /**

@@ -1,16 +1,16 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 17:47:17
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 11:21:43
  * @Description: 
 -->
 <template>
   <view class="container">
     <view class="info dark-mode">
       <h1 class="info_title">
-        <image class="info_title_logo" :src="user.avatarUrl" />
-        <text class="info_title_name">{{ user.nickName }}</text>
+        <image class="info_title_logo" :src="user.avatar" />
+        <text class="info_title_name">{{ user.nickname }}</text>
       </h1>
       <view class="info_list">
         <view class="info_item">
@@ -38,7 +38,7 @@
 export default {
   data() {
     return {
-      title: 'Hello',
+      title: "Hello",
       isLogin: false,
       user: {},
       show: false,
@@ -49,25 +49,25 @@ export default {
     console.log(this.$store.state.token);
     if (!this.$store.state.token) {
       uni.redirectTo({
-        url: '/pages/login/index',
+        url: "/pages/login/index",
       });
     }
   },
   methods: {
     handleLogout() {
       uni.showModal({
-        title: '退出登陆',
-        content: '点击确定退出登陆',
+        title: "退出登陆",
+        content: "点击确定退出登陆",
         success: function (res) {
           if (res.confirm) {
             // 退出登陆
-            console.log('用户点击确定');
+            console.log("用户点击确定");
             uni.redirectTo({
-              url: '/pages/login/index',
+              url: "/pages/login/index",
             });
             uni.clearStorageSync();
           } else if (res.cancel) {
-            console.log('用户点击取消');
+            console.log("用户点击取消");
           }
         },
       });
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('@/static/styles/_global.scss');
+@import url("@/static/styles/_global.scss");
 .info {
   &_title {
     height: 97px;
@@ -96,6 +96,11 @@ export default {
       margin-left: 10px;
       color: #c0c4cc;
       font-size: 20px;
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-wrap: normal;
     }
   }
   &_list {
