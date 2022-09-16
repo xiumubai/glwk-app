@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-30 16:25:26
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 11:24:13
  * @Description: 课程详情
 -->
 <template>
@@ -24,10 +24,10 @@
           >
         </view>
         <h3 class="name">
-          {{ courseDetail.title || '' }}
+          {{ courseDetail.title || "" }}
         </h3>
         <view class="tag_list">
-          <view class="tag_item">{{ courseDetail.subjectLevelTwo || '' }}</view>
+          <view class="tag_item">{{ courseDetail.subjectLevelTwo || "" }}</view>
         </view>
       </view>
 
@@ -48,9 +48,9 @@
             </view>
             <view class="teacher_desc">
               <view class="teacher_name"
-                >高级讲师-{{ courseDetail.teacherName || '' }}</view
+                >高级讲师-{{ courseDetail.teacherName || "" }}</view
               >
-              <view class="teacher_intro">{{ courseDetail.intro || '' }}</view>
+              <view class="teacher_intro">{{ courseDetail.intro || "" }}</view>
             </view>
           </navigator>
           <view class="title"> 课程详情 </view>
@@ -128,7 +128,7 @@
         </view>
         <view class="bottom_main">
           <view class="buy_button" @click="handleBuy">
-            {{ course.isBuy ? '去学习' : '点击购买' }}
+            {{ course.isBuy ? "去学习" : "点击购买" }}
           </view>
         </view>
       </view>
@@ -137,13 +137,13 @@
 </template>
 
 <script>
-import courseService from '@/services/course';
-import userService from '@/services/user';
+import courseService from "@/services/course";
+import userService from "@/services/user";
 
 const tabList = [
-  { index: 0, name: '介绍' },
-  { index: 1, name: '目录' },
-  { index: 2, name: '评价' },
+  { index: 0, name: "介绍" },
+  { index: 1, name: "目录" },
+  { index: 2, name: "评价" },
 ];
 export default {
   data() {
@@ -170,7 +170,7 @@ export default {
       comment: {},
       /** 查看更多 */
       contentText: {
-        contentdown: '点击查看更多评论',
+        contentdown: "点击查看更多评论",
       },
     };
   },
@@ -181,7 +181,7 @@ export default {
     this.getCommentList();
   },
   onPageScroll(e) {
-    uni.$emit('onPageScroll', e);
+    uni.$emit("onPageScroll", e);
   },
   methods: {
     getTopValue() {
@@ -190,19 +190,19 @@ export default {
       this.$nextTick(() => {
         const query = uni.createSelectorQuery().in(_this);
         query
-          .select('#anchor0')
+          .select("#anchor0")
           .boundingClientRect((e) => {
-            console.log('e1', e);
+            console.log("e1", e);
             this.enchorParams.enchorTop1 = e.top;
           })
-          .select('#anchor1')
+          .select("#anchor1")
           .boundingClientRect((e) => {
-            console.log('e2', e);
+            console.log("e2", e);
             _this.enchorParams.enchorTop2 = e.top;
           })
-          .select('#anchor2')
+          .select("#anchor2")
           .boundingClientRect((e) => {
-            console.log('e2', e);
+            console.log("e2", e);
             this.enchorParams.enchorTop3 = e.top;
           })
           .exec();
@@ -222,7 +222,7 @@ export default {
         this.comment = res.data;
         this.getTopValue();
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     /**
@@ -240,7 +240,7 @@ export default {
         this.courseDetail = res.data.course;
         this.isCollect = res.data.isCollect;
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     /**
@@ -254,13 +254,13 @@ export default {
         });
         if (res.code === 200) {
           uni.showToast({
-            title: '添加收藏成功',
+            title: "添加收藏成功",
             duration: 2000,
           });
           this.isCollect = true;
         }
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     /**
@@ -274,13 +274,13 @@ export default {
         });
         if (res.code === 200) {
           uni.showToast({
-            title: '取消收藏成功',
+            title: "取消收藏成功",
             duration: 2000,
           });
           this.isCollect = false;
         }
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     /**
@@ -289,15 +289,15 @@ export default {
      */
     handleJump(videoSourceId) {
       // 跳转之前判断该课程是否已经购买，是否已经登陆账户
-      this.$store.dispatch('goLogin', () => {
+      this.$store.dispatch("goLogin", () => {
         if (this.course.isBuy) {
           uni.navigateTo({
             url: `/pages/video/index?id=${this.options.id}&videoSourceId=${videoSourceId}`,
           });
         } else {
           uni.showToast({
-            title: '请先购买课程',
-            icon: 'none',
+            title: "请先购买课程",
+            icon: "none",
           });
         }
       });
@@ -307,7 +307,7 @@ export default {
      * @return {*}
      */
     handleBuy() {
-      this.$store.dispatch('goLogin', () => {
+      this.$store.dispatch("goLogin", () => {
         // 点击购买
         // 判断是否登陆，是否已经购买，已经购买了，按钮显示去学习
         if (this.course.isBuy) {
@@ -326,7 +326,7 @@ export default {
      * @return {*}
      */
     handleFavo() {
-      this.$store.dispatch('goLogin', () => {
+      this.$store.dispatch("goLogin", () => {
         if (!this.isCollect) {
           this.collectSave();
         } else {
@@ -350,7 +350,7 @@ export default {
         top = this.enchorParams.enchorTop3;
       }
 
-      console.log('top', this.enchorParams, top);
+      console.log("top", this.enchorParams, top);
 
       // 锚点定位，滚动到对应的位置
       uni.pageScrollTo({
@@ -363,7 +363,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url('@/static/styles/_global.scss');
+@import url("@/static/styles/_global.scss");
 
 .course {
   background: #f2f3f8;
@@ -431,7 +431,7 @@ export default {
     padding: 16px 0;
     .title_left {
       &::before {
-        content: '';
+        content: "";
         width: 4px;
         height: 12px;
         border-radius: 10px;
@@ -515,7 +515,7 @@ export default {
             color: #3e414d;
             margin-left: 10px;
             &::after {
-              content: '';
+              content: "";
               position: absolute;
               bottom: -12px;
               left: 0;
@@ -568,10 +568,10 @@ export default {
       .bg {
         width: 24px;
         height: 24px;
-        background-image: url('https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/0cfab2184a7ac26a164fdc334d40d382.png');
+        background-image: url("https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/0cfab2184a7ac26a164fdc334d40d382.png");
         background-size: 100% 100%;
         &.active {
-          background-image: url('https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/88b416217e2eca5e9e9f1f3fac1e7f24.png');
+          background-image: url("https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/88b416217e2eca5e9e9f1f3fac1e7f24.png");
         }
       }
     }

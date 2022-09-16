@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 11:21:43
+ * @LastEditTime: 2022-09-16 11:34:54
  * @Description: 
 -->
 <template>
@@ -10,7 +10,9 @@
     <view class="info dark-mode">
       <h1 class="info_title">
         <image class="info_title_logo" :src="user.avatar" />
-        <text class="info_title_name">{{ user.nickname }}</text>
+        <text class="info_title_name" @click="handleLogin">{{
+          user.nickname || "去登陆"
+        }}</text>
       </h1>
       <view class="info_list">
         <view class="info_item">
@@ -54,6 +56,11 @@ export default {
     }
   },
   methods: {
+    handleLogin() {
+      this.$store.dispatch("goLogin", () => {
+        console.log("点击去登陆");
+      });
+    },
     handleLogout() {
       uni.showModal({
         title: "退出登陆",
@@ -91,6 +98,7 @@ export default {
       height: 60px;
       width: 60px;
       border-radius: 50%;
+      background: #fff;
     }
     &_name {
       margin-left: 10px;
