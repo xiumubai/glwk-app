@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 17:31:38
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 15:50:55
  * @Description: 订单支付页
 -->
 <template>
@@ -50,18 +50,18 @@
         实际支付
         <text>¥{{ orderDetail.totalFee }}</text>
       </view>
-      <view class="pay_btn">去付款</view>
+      <view class="pay_btn" @click="handleOrderPay">去付款</view>
     </view>
   </view>
 </template>
 
 <script>
-import orderService from '@/services/order';
+import orderService from "@/services/order";
 export default {
   data() {
     return {
       options: {},
-      orderId: '',
+      orderId: "",
       orderDetail: {},
       isChecked: false,
     };
@@ -71,27 +71,82 @@ export default {
     this.addOrder();
   },
   methods: {
+    /**
+     * @description: 创建订单
+     * @returns {*}
+     */
     async addOrder() {
       try {
         const res = await orderService.addOrder({
           courseId: this.options.courseId,
         });
-        console.log('res', res);
+        console.log("res", res);
         this.orderId = res.data.orderId;
         this.getOrderInfo();
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
+    /**
+     * @description: 获取订单信息
+     * @returns {*}
+     */
     async getOrderInfo() {
       try {
         const res = await orderService.getOrderInfo({
           orderId: this.orderId,
         });
         this.orderDetail = res.data.item;
-        console.log('res', res);
+        console.log("res", res);
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
+      }
+    },
+    /**
+     * @description: 订单支付
+     * @returns {*}
+     */
+    async handleOrderPay() {
+      const _this = this;
+      try {
+        const res = await orderService.orderPay({
+          orderNo: this.orderDetail.orderNo,
+        });
+        console.log("order", res);
+        if (res.code === 200) {
+          const data = res.data;
+          uni.requestPayment({
+            timeStamp: data.timeStamp,
+            nonceStr: data.nonceStr,
+            package: data.package,
+            signType: data.signType,
+            paySign: data.paySign,
+            success(data) {
+              console.log("pay-success", data);
+              _this.getPayStatus();
+            },
+            fail(e) {
+              console.log("pay-fail", e.errMsg);
+            },
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    /**
+     * @description: 获取支付状态
+     * @returns {*}
+     */
+    async getPayStatus() {
+      const res = await orderService.payStatus({
+        orderNo: this.orderDetail.orderNo,
+      });
+      console.log("status-res", res);
+      if (res.code == 200) {
+        uni.showToast({
+          title: "支付成功",
+        });
       }
     },
   },

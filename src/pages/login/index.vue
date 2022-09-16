@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 18:17:29
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 14:48:54
+ * @LastEditTime: 2022-09-16 14:58:31
  * @Description: 
 -->
 <template>
@@ -178,8 +178,8 @@ export default {
       try {
         const res = await userService.updateMember({
           data: {
-            photoUrl: this.userInfo.avatarUrl,
-            nickName: this.userInfo.nickName,
+            avatar: this.userInfo.avatarUrl,
+            nickname: this.userInfo.nickName,
           },
         });
 

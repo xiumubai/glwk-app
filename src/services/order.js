@@ -1,8 +1,8 @@
 /*
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 16:34:32
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 15:43:14
  * @Description:
  */
 import Service from '@/utils/http';
@@ -33,6 +33,24 @@ class Order extends Service {
    */
   getOrderInfo(options) {
     options.url = `/api/order/auth/get/${options.orderId}`;
+    return this.get(options);
+  }
+  /**
+    * @description: 支付订单
+    * @param {*} options
+    * @return {*}
+    */
+  orderPay(options) {
+    options.url = `/api/order/webChat/createJsapi/${options.orderNo}`;
+    return this.get(options);
+  }
+  /**
+    * @description: 支付订单
+    * @param {*} options
+    * @return {*}
+    */
+  payStatus(options) {
+    options.url = `/api/order/webChat/queryPayStatus/${options.orderNo}`;
     return this.get(options);
   }
 }
