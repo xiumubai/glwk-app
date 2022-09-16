@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-20 17:04:01
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-26 09:35:07
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 17:54:47
  * @Description: 
 -->
 <template>
@@ -23,13 +23,13 @@
         <view class="list_item_card_img">
           <image
             alt="封面"
-            :mode="type === 'course' ? 'widthFix' : 'aspectFit'"
+            :mode="type === 'course' ? 'fill' : 'aspectFit'"
             :src="type === 'course' ? item.cover : item.avatar"
           />
         </view>
         <view class="list_item_card_content">
           <h3 class="item_content_name">
-            {{ type === 'course' ? item.title : item.intro }}
+            {{ type === "course" ? item.title : item.intro }}
           </h3>
           <view class="item_content__labal">
             <uni-icons
@@ -57,7 +57,7 @@
 
 <script>
 export default {
-  name: 'v-card-list',
+  name: "v-card-list",
   props: {
     list: {
       type: Array,
@@ -65,7 +65,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'course',
+      default: "course",
     },
   },
 };
@@ -90,7 +90,7 @@ export default {
       &_img {
         width: 100%;
         height: 95px;
-        background-image: url('https://8.idqqimg.com/edu/mobilev2/m-core/3d1dd248376a6da4a15e0000184f44c6.png');
+        background-image: url("https://8.idqqimg.com/edu/mobilev2/m-core/3d1dd248376a6da4a15e0000184f44c6.png");
         background-repeat: no-repeat;
         background-size: contain;
         border-radius: 8px 8px 0 0;
