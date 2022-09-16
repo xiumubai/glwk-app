@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 11:24:13
+ * @LastEditTime: 2022-09-16 16:15:35
  * @Description: 课程详情
 -->
 <template>
@@ -177,6 +177,8 @@ export default {
   mounted() {},
   onLoad(option) {
     this.options = option;
+  },
+  onShow() {
     this.getCourseDetail();
     this.getCommentList();
   },

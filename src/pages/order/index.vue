@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 15:50:55
+ * @LastEditTime: 2022-09-16 16:16:06
  * @Description: 订单支付页
 -->
 <template>
@@ -147,6 +147,8 @@ export default {
         uni.showToast({
           title: "支付成功",
         });
+
+        uni.navigateBack();
       }
     },
   },
