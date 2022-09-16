@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 10:35:53
+ * @LastEditTime: 2022-09-16 14:02:33
  * @Description:
  */
 import Service from '@/utils/http';
@@ -23,7 +23,7 @@ class User extends Service {
    * @return {*}
    */
   getLoginInfo(options = {}) {
-    options.url = `/api/ucenter/member/auth/getLoginInfo?token=${options.token}`;
+    options.url = `/api/ucenter/member/auth/getLoginInfo`;
     return this.get(options);
   }
   /**

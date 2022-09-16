@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:34:58
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 11:36:24
+ * @LastEditTime: 2022-09-16 14:03:46
  * @Description:
  */
 import Vue from 'vue';
@@ -18,11 +18,14 @@ const store = new Vuex.Store({
   getters: {},
   mutations: {
     setUser(state, user) {
-      state.token = user.token;
       state.user = user;
-      uni.setStorageSync(TOKEN_KEY, user.token);
+
       uni.setStorageSync(USER_KEY, JSON.stringify(user));
     },
+    setToken(state, token) {
+      state.token = token;
+      uni.setStorageSync(TOKEN_KEY, token);
+    }
   },
   actions: {
     /**
@@ -33,6 +36,15 @@ const store = new Vuex.Store({
      */
     setUser({ commit }, payload) {
       commit('setUser', payload);
+    },
+    /**
+     * @description: 设置token
+     * @param {*} commit
+     * @param {*} payload
+     * @return {*}
+     */
+    setToken({ commit }, payload) {
+      commit('setToken', payload);
     },
     /**
      * @description: 判断是否需要跳转登陆

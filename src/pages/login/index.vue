@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 18:17:29
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 11:31:43
+ * @LastEditTime: 2022-09-16 14:48:54
  * @Description: 
 -->
 <template>
@@ -56,10 +56,8 @@ export default {
   data() {
     return {
       checked: false,
+      userInfo: {},
     };
-  },
-  onLoad() {
-    // 登陆
   },
 
   methods: {
@@ -104,12 +102,26 @@ export default {
     mpWeixinLogin() {
       const _this = this;
       try {
-        uni.login({
-          success(res) {
-            // 获取到code
-            const code = res.code;
-            console.log("code", code);
-            if (code) _this.login(code);
+        // 先调用授权
+        uni.getUserProfile({
+          lang: "zh_CN",
+          desc: "用于完善会员资料",
+          success: async (res) => {
+            console.log("userprofile", res);
+            // 保存userinifo信息
+            _this.userInfo = res.userInfo;
+            // 授权成功
+            uni.login({
+              success(data) {
+                // 获取到code
+                const code = data.code;
+                console.log("code", code);
+                if (code) _this.login(code);
+              },
+            });
+          },
+          file: (err) => {
+            console.log(err);
           },
         });
       } catch (e) {
@@ -127,7 +139,8 @@ export default {
           code,
         });
         console.log("token", res.data.token);
-        this.getUserInfo(res.data.token);
+        this.$store.dispatch("setToken", res.data.token);
+        this.getUserInfo();
       } catch (e) {
         console.log(e);
       }
@@ -137,18 +150,14 @@ export default {
      * @param {*} token
      * @returns {*}
      */
-    async getUserInfo(token) {
+    async getUserInfo() {
       try {
-        const res = await userService.getLoginInfo({
-          token,
-        });
-        console.log("userinfo", res);
+        const res = await userService.getLoginInfo();
+        console.log("userLogininfo", res);
         if (res.data.item) {
           this.$store.dispatch("setUser", {
             ...res.data.item,
-            token,
           });
-
           // 需要更新用户信息
           if (!res.data.item.nickname) {
             this.updateUserInfo();
@@ -165,27 +174,24 @@ export default {
      * @param {*} info
      * @returns {*}
      */
-    updateUserInfo() {
+    async updateUserInfo() {
       try {
-        // 先通过微信api获取用户信息
-        uni.getUserProfile({
-          desc: "用于完善会员资料",
-          success: async (res) => {
-            console.log("userinfo", res);
-            const info = await userService.updateMember({
-              data: {
-                photoUrl: res.userinfo.avatar,
-                nickName: res.userinfo.nickname,
-              },
-            });
-            console.log(info);
-            // 登陆成功，保存个人信息，返回个人页面
-            this.$store.dispatch("setUser", {
-              ...res.userInfo,
-            });
-            this.jump();
+        const res = await userService.updateMember({
+          data: {
+            photoUrl: this.userInfo.avatarUrl,
+            nickName: this.userInfo.nickName,
           },
         });
+
+        console.log("updateres", res);
+        if (res.code == 200) {
+          // 登陆成功，保存个人信息，返回个人页面
+          this.$store.dispatch("setUser", {
+            avatar: this.userInfo.avatarUrl,
+            nickname: this.userInfo.nickName,
+          });
+          this.jump();
+        }
       } catch (e) {
         console.log(e);
       }
