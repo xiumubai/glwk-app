@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 16:15:35
+ * @LastEditTime: 2022-09-16 16:34:39
  * @Description: 课程详情
 -->
 <template>
@@ -313,8 +313,9 @@ export default {
         // 点击购买
         // 判断是否登陆，是否已经购买，已经购买了，按钮显示去学习
         if (this.course.isBuy) {
+          const videoSourceId = this.chapterList[0].children[0].videoSourceId;
           uni.navigateTo({
-            url: `/pages/video/index?id=${this.options.id}&videoSourceId=''`,
+            url: `/pages/video/index?id=${this.options.id}&videoSourceId=${videoSourceId}`,
           });
         } else {
           uni.navigateTo({

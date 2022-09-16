@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-27 13:56:46
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 15:02:03
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 16:30:29
  * @Description: 
 -->
 <template>
@@ -40,10 +40,6 @@
                   src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/f1c59a1527e075f6ebfba3d7ac605f07.png"
                 />
                 <view class="task_title">{{ child.title }}</view>
-                <image
-                  class="task_icon"
-                  src="https://cdn-cos-ke.myoed.com/ke_proj/mobilev2/m-core/064fdd1eb99fcb8bef80085f2b548e4b.png"
-                />
               </view>
             </view>
           </uni-collapse-item>
@@ -54,7 +50,7 @@
 </template>
 
 <script>
-import courseService from '@/services/course';
+import courseService from "@/services/course";
 export default {
   data() {
     return {
@@ -68,7 +64,7 @@ export default {
     };
   },
   onLoad(option) {
-    console.log('options', option);
+    console.log("options", option);
 
     this.options = option;
     this.getCourseDetail();
@@ -84,26 +80,27 @@ export default {
         this.chapterList = res.data.chapterList;
         this.course = res.data;
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     async getVideoUrl(videoSourceId) {
+      console.log("videoid", videoSourceId);
       try {
         const res = await courseService.getVideoSource({
           videoSourceId,
         });
-        console.log('res', res);
+        console.log("res", res);
 
         if (res.code == 200) {
           this.viedeo = res.data;
         } else {
           uni.showToast({
             title: res.message,
-            icon: 'error',
+            icon: "error",
           });
         }
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     videoErrorCallback(e) {
@@ -133,7 +130,7 @@ export default {
     padding: 16px 0;
     .title_left {
       &::before {
-        content: '';
+        content: "";
         width: 4px;
         height: 12px;
         border-radius: 10px;
@@ -163,7 +160,7 @@ export default {
           color: #3e414d;
           margin-left: 10px;
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             bottom: -12px;
             left: 0;

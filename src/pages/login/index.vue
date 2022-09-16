@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-20 18:17:29
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 14:58:31
+ * @LastEditTime: 2022-09-16 16:40:15
  * @Description: 
 -->
 <template>
@@ -202,9 +202,10 @@ export default {
         icon: "success",
         success: () => {
           // 跳转到个人页面
-          uni.switchTab({
-            url: "/pages/user/index",
-          });
+          // uni.switchTab({
+          //   url: "/pages/user/index",
+          // });
+          uni.navigateBack();
         },
       });
     },

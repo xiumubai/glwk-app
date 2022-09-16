@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 11:34:54
+ * @LastEditTime: 2022-09-16 16:43:25
  * @Description: 
 -->
 <template>
@@ -48,9 +48,8 @@ export default {
   },
   onLoad() {
     this.user = this.$store.state.user;
-    console.log(this.$store.state.token);
     if (!this.$store.state.token) {
-      uni.redirectTo({
+      uni.navigateTo({
         url: "/pages/login/index",
       });
     }
@@ -69,7 +68,7 @@ export default {
           if (res.confirm) {
             // 退出登陆
             console.log("用户点击确定");
-            uni.redirectTo({
+            uni.navigateTo({
               url: "/pages/login/index",
             });
             uni.clearStorageSync();
