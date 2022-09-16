@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 15:43:14
+ * @LastEditTime: 2022-09-16 15:51:44
  * @Description:
  */
 import Service from '@/utils/http';
@@ -45,7 +45,7 @@ class Order extends Service {
     return this.get(options);
   }
   /**
-    * @description: 支付订单
+    * @description: 查询订单支付状态
     * @param {*} options
     * @return {*}
     */
