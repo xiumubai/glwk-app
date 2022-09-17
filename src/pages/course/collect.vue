@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 21:48:30
+ * @LastEditTime: 2022-09-17 12:00:18
  * @Description: 课程收藏列表页
 -->
 <template>
@@ -46,7 +46,7 @@ export default {
       status: "more",
     };
   },
-  onLoad() {
+  onShow() {
     this.getCollectList();
   },
   onReachBottom() {

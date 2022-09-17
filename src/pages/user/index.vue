@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 16:43:25
+ * @LastEditTime: 2022-09-17 13:03:12
  * @Description: 
 -->
 <template>
@@ -47,12 +47,17 @@ export default {
     };
   },
   onLoad() {
-    this.user = this.$store.state.user;
     if (!this.$store.state.token) {
       uni.navigateTo({
         url: "/pages/login/index",
       });
     }
+  },
+  onTabItemTap() {
+    this.user = this.$store.state.user;
+  },
+  onShow() {
+    this.user = this.$store.state.user;
   },
   methods: {
     handleLogin() {
@@ -61,17 +66,20 @@ export default {
       });
     },
     handleLogout() {
+      const _this = this;
       uni.showModal({
         title: "退出登陆",
         content: "点击确定退出登陆",
         success: function (res) {
           if (res.confirm) {
             // 退出登陆
-            console.log("用户点击确定");
             uni.navigateTo({
               url: "/pages/login/index",
             });
             uni.clearStorageSync();
+            // 清除store
+            _this.$store.dispatch("setUser", {});
+            _this.$store.dispatch("setToken", "");
           } else if (res.cancel) {
             console.log("用户点击取消");
           }

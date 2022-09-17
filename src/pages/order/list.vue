@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-29 19:05:46
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-17 12:00:31
  * @Description: 订单列表页面
 -->
 <template>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import orderService from '@/services/order';
+import orderService from "@/services/order";
 export default {
   data() {
     return {
@@ -46,15 +46,15 @@ export default {
         page: 1,
         limit: 10,
       },
-      status: 'more',
+      status: "more",
     };
   },
-  onLoad() {
+  onShow() {
     this.getOrderList();
   },
   onReachBottom() {
-    if (this.status !== 'noMore') {
-      this.status = 'loading';
+    if (this.status !== "noMore") {
+      this.status = "loading";
       this.params.page++;
       this.getOrderList();
     }
@@ -65,15 +65,15 @@ export default {
         const res = await orderService.orderList({
           ...this.params,
         });
-        console.log('res', res);
+        console.log("res", res);
 
         const items = res.data.items;
         // 数组解构拼接
         this.list = [...this.list, ...items];
-        if (items.length < 10) return (this.status = 'noMore');
-        if (items.length >= 10) this.status = 'more';
+        if (items.length < 10) return (this.status = "noMore");
+        if (items.length >= 10) this.status = "more";
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     handleJump(item) {
@@ -92,7 +92,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('@/static/styles/_global.scss');
+@import url("@/static/styles/_global.scss");
 .course_list {
   background: #000;
   padding: 15px 15px 0;

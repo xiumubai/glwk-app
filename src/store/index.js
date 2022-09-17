@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-22 09:34:58
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 14:03:46
+ * @LastEditTime: 2022-09-17 11:42:54
  * @Description:
  */
 import Vue from 'vue';
@@ -19,7 +19,6 @@ const store = new Vuex.Store({
   mutations: {
     setUser(state, user) {
       state.user = user;
-
       uni.setStorageSync(USER_KEY, JSON.stringify(user));
     },
     setToken(state, token) {
