@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-26 10:42:43
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-17 11:11:11
+ * @LastEditTime: 2022-09-17 11:19:00
  * @Description: 评论列表
 -->
 <template>
@@ -97,6 +97,9 @@ export default {
             title: "评论发送成功",
           });
           this.content = "";
+          this.params.page = 1;
+          this.commentList = [];
+          this.getCommentList();
         } else {
           uni.showToast({
             title: "评论发送失败",
