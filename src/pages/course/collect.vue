@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-26 15:25:11
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 17:39:41
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-16 21:48:30
  * @Description: 课程收藏列表页
 -->
 <template>
@@ -11,7 +11,7 @@
       <view class="course_list_item" v-for="item in list" :key="item.id">
         <navigator
           class="course_list_item_a"
-          :url="'/pages/course/detail?id=' + item.id"
+          :url="'/pages/course/detail?id=' + item.courseId"
         >
           <view class="item_cover">
             <image :src="item.cover" />
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import courseService from '@/services/course';
+import courseService from "@/services/course";
 export default {
   data() {
     return {
@@ -43,15 +43,15 @@ export default {
         page: 1,
         limit: 10,
       },
-      status: 'more',
+      status: "more",
     };
   },
   onLoad() {
     this.getCollectList();
   },
   onReachBottom() {
-    if (this.status !== 'noMore') {
-      this.status = 'loading';
+    if (this.status !== "noMore") {
+      this.status = "loading";
       this.params.page++;
       this.getCollectList();
     }
@@ -62,15 +62,15 @@ export default {
         const res = await courseService.courseCollectList({
           ...this.params,
         });
-        console.log('res', res);
+        console.log("res", res);
 
         const items = res.data.items;
         // 数组解构拼接
         this.list = [...this.list, ...items];
-        if (items.length < 10) return (this.status = 'noMore');
-        if (items.length >= 10) this.status = 'more';
+        if (items.length < 10) return (this.status = "noMore");
+        if (items.length >= 10) this.status = "more";
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
   },
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('@/static/styles/_global.scss');
+@import url("@/static/styles/_global.scss");
 .course_list {
   background: #000;
   padding: 15px 15px 0;
