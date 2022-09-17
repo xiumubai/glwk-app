@@ -115,5 +115,8 @@
     "navigationBarTitleText": "谷粒微课",
     "navigationBarBackgroundColor": "#17181a",
     "backgroundColor": "#000"
+  },
+  "app-plus": {
+    "softinputMode": "adjustPan"
   }
 }
