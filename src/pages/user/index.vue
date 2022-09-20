@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-19 11:10:54
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-17 13:03:12
+ * @LastEditTime: 2022-09-19 14:43:41
  * @Description: 
 -->
 <template>
@@ -43,20 +43,18 @@ export default {
       title: "Hello",
       isLogin: false,
       user: {},
-      show: false,
     };
   },
-  onLoad() {
+  onLoad() {},
+  onTabItemTap() {
+    this.user = this.$store.state.user;
+  },
+  onShow() {
     if (!this.$store.state.token) {
       uni.navigateTo({
         url: "/pages/login/index",
       });
     }
-  },
-  onTabItemTap() {
-    this.user = this.$store.state.user;
-  },
-  onShow() {
     this.user = this.$store.state.user;
   },
   methods: {
@@ -85,9 +83,6 @@ export default {
           }
         },
       });
-    },
-    change(e) {
-      this.show = e.show;
     },
   },
 };
