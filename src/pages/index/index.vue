@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-19 10:33:44
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 11:58:32
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-20 14:17:54
  * @Description: 
 -->
 <template>
@@ -66,8 +66,8 @@
 
 <script>
 // 默认模拟数据，可删除
-import { hotCateList, bannerList, courseList } from '@/common/constant.js';
-import courseService from '@/services/course';
+import { hotCateList, bannerList, courseList } from "@/common/constant.js";
+import courseService from "@/services/course";
 export default {
   data() {
     return {
@@ -84,7 +84,7 @@ export default {
   },
   // 监听滚动事件，控制返回顶部按钮
   onPageScroll(res) {
-    uni.$emit('onPageScroll', res);
+    uni.$emit("onPageScroll", res);
   },
   methods: {
     // 获取banner
@@ -93,7 +93,7 @@ export default {
         const res = await courseService.banner();
         this.bannerList = res.data.bannerList;
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
 
@@ -103,21 +103,21 @@ export default {
         const res = await courseService.indexCourse();
         this.teacherList = res.data.teacherList;
         this.courseList = res.data.courseList;
-        console.log('res', res);
+        console.log("res", res);
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     focus() {
       // 点击首页搜索框，跳转到课程页面
       uni.switchTab({
-        url: '/pages/course/index',
+        url: "/pages/course/index?focus=true",
       });
     },
     navigateTo(link, type) {
-      if (type === 'course') {
+      if (type === "course") {
         uni.switchTab({ url: link });
-      } else if (type === 'teacher') {
+      } else if (type === "teacher") {
         uni.navigateTo({ url: link });
       }
     },
@@ -126,8 +126,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/static/styles/_global.scss';
-@import '@/static/styles/_uni-defult.scss';
+@import "@/static/styles/_global.scss";
+@import "@/static/styles/_uni-defult.scss";
 .home {
   padding-top: 56px;
 }

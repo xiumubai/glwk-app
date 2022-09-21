@@ -1,13 +1,13 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-22 17:06:51
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 11:38:23
+ * @LastEditors: xxx@xxx.com
+ * @LastEditTime: 2022-09-20 16:16:01
  * @Description: 课程列表
 -->
 <template>
   <div class="container course">
-    <v-search-bar @search="search" class="header"></v-search-bar>
+    <v-search-bar @search="search" :focus="focus" class="header"></v-search-bar>
     <view class="filter"></view>
     <view class="course_list">
       <view class="course_list_item" v-for="item in list" :key="item.id">
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import courseService from '@/services/course';
+import courseService from "@/services/course";
 
 export default {
   data() {
@@ -48,23 +48,28 @@ export default {
         page: 1,
         limit: 10,
       },
-      status: 'more',
+      status: "more",
+      focus: false,
     };
   },
-  onLoad() {
+  onLoad(options) {
+    this.focus = options.focus;
     this.getCourseList();
   },
-  // 监听滚动事件最外层view不能添加css样式overflow：scroll
+  /**
+   * @description: 监听事件最外层view不能添加css样式overflow：scroll
+   * @returns {*}
+   */
   onReachBottom() {
-    if (this.status !== 'noMore') {
-      this.status = 'loading';
+    if (this.status !== "noMore") {
+      this.status = "loading";
       this.params.page++;
       this.getCourseList();
     }
   },
   // 监听滚动事件，控制返回顶部按钮
   onPageScroll(res) {
-    uni.$emit('onPageScroll', res);
+    uni.$emit("onPageScroll", res);
   },
   methods: {
     async getCourseList() {
@@ -75,16 +80,16 @@ export default {
         const items = res.data.items;
         // 数组解构拼接
         this.list = [...this.list, ...items];
-        if (items.length < 10) return (this.status = 'noMore');
-        if (items.length >= 10) this.status = 'more';
+        if (items.length < 10) return (this.status = "noMore");
+        if (items.length >= 10) this.status = "more";
       } catch (e) {
-        console.log('e', e);
+        console.log("e", e);
       }
     },
     search(val) {
       uni.showToast({
-        title: '搜索：' + val,
-        icon: 'none',
+        title: "搜索：" + val,
+        icon: "none",
       });
     },
   },
@@ -92,8 +97,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url('@/static/styles/_global.scss');
-@import '@/static/styles/_uni-defult.scss';
+@import url("@/static/styles/_global.scss");
+@import "@/static/styles/_uni-defult.scss";
 .course {
   padding-top: 56px;
 }

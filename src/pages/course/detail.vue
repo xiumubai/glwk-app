@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
  * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 16:34:39
+ * @LastEditTime: 2022-09-21 11:37:41
  * @Description: 课程详情
 -->
 <template>
@@ -123,7 +123,7 @@
         <view class="bottom_button">
           <view class="favo_button" @click="handleFavo">
             <view :class="['bg', isCollect ? 'active' : '']"></view>
-            收藏
+            {{ isCollect ? "已收藏" : "收藏" }}
           </view>
         </view>
         <view class="bottom_main">
