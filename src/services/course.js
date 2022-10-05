@@ -1,8 +1,8 @@
 /*
  * @Author: 朽木白
  * @Date: 2022-08-22 10:16:54
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-27 16:35:52
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2022-10-05 10:57:14
  * @Description:
  */
 import Service from '@/utils/http';
@@ -77,7 +77,7 @@ class Course extends Service {
    * @return {*}
    */
   getVideoSource(options = {}) {
-    options.url = `/api/vod/video/getPlayAuth/${options.videoSourceId}`;
+    options.url = `/api/vod/video/getPlayURL/${options.videoSourceId}`;
     return this.get(options);
   }
 }

@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-27 13:56:46
- * @LastEditors: xxx@xxx.com
- * @LastEditTime: 2022-09-16 16:30:29
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2022-10-05 11:20:37
  * @Description: 
 -->
 <template>
@@ -10,11 +10,11 @@
     <view>
       <video
         class="video"
-        src="https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20200317.mp4"
-        @error="videoErrorCallback"
-        :poster="course.course.cover"
+        :src="video.playURL"
+        :poster="course.cover"
         object-fit="fill"
         controls
+        autoplay
         page-gesture
         enable-play-gesture
       ></video>
@@ -60,7 +60,9 @@ export default {
       /** 课程信息 */
       course: {},
       /** 视频信息 */
-      video: {},
+      video: {
+        playURL: 1123,
+      },
     };
   },
   onLoad(option) {
@@ -78,7 +80,7 @@ export default {
           // id: '1192252213659774977',
         });
         this.chapterList = res.data.chapterList;
-        this.course = res.data;
+        this.course = res.data.course;
       } catch (e) {
         console.log("e", e);
       }
@@ -92,7 +94,8 @@ export default {
         console.log("res", res);
 
         if (res.code == 200) {
-          this.viedeo = res.data;
+          console.log(res.data.playURL);
+          this.video = res.data;
         } else {
           uni.showToast({
             title: res.message,
@@ -102,12 +105,6 @@ export default {
       } catch (e) {
         console.log("e", e);
       }
-    },
-    videoErrorCallback(e) {
-      uni.showModal({
-        content: e.target.errMsg,
-        showCancel: false,
-      });
     },
   },
 };
