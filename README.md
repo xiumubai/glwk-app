@@ -1,19 +1,21 @@
 # glwk-app
 
-## Project setup
+## install
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### start
 ```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
+yarn dev:mp-weixin
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### build 
+```
+yarn build:mp-weixin
+```
+
+### docs
+
+See [docs](https://www.yuque.com/xiumubai/fe/aae0oh)
+
