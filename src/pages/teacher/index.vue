@@ -1,8 +1,8 @@
 <!--
  * @Author: 朽木白
  * @Date: 2022-08-23 10:19:29
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-23 18:16:07
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-02-20 14:28:20
  * @Description: 
 -->
 <template>
@@ -46,7 +46,7 @@ export default {
     if (this.status !== 'noMore') {
       this.status = 'loading';
       this.params.page++;
-      this.getCourseList();
+      this.getTeacherList();
     }
   },
   // 监听滚动事件，控制返回顶部按钮

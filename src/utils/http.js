@@ -1,8 +1,8 @@
 /*
  * @Author: 朽木白
  * @Date: 2022-08-22 09:47:09
- * @LastEditors: 1547702880@qq.com
- * @LastEditTime: 2022-08-29 18:55:16
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-02-17 15:46:28
  * @Description:
  */
 import store from '@/store/index';
@@ -39,24 +39,13 @@ class Service {
 
     // 鉴权
     let token = store.state.token;
-    let authorize = '';
-    if (uni.getStorageSync(TOKEN_KEY)) token = uni.getStorageSync(TOKEN_KEY);
-    if (uni.getStorageSync('Authorization'))
-      authorize = uni.getStorageSync('Authorization');
-
     const header = {
       token,
       'Content-type': 'application/json; charset=UTF-8',
       appid: APIConfig.appid,
     };
 
-    // 删除鉴权
-    if (opts.noAuth) {
-      delete header.Authorization;
-    }
-
     uni.showLoading();
-    console.log(opts);
     return new Promise((resolve, reject) => {
       uni.request({
         url: baseUrl + opts.url,
